@@ -1,4 +1,4 @@
-package com.bj58.qa.WMDATest;
+package com.check.test;
 
 import java.io.BufferedReader;
 import java.io.IOException;

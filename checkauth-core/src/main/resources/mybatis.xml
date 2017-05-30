@@ -5,7 +5,10 @@
 	<typeAliases>
 		<!-- 数据库访问对象别名 -->
 		<typeAlias type="com.check.auth.g3.checkauth.dao.IAuthInstDirDao" alias="iAuthInstDirDao" />
+		<typeAlias type="com.check.auth.g3.checkauth.dao.IMainInstInfoDao" alias="iMainInstInfoDao" />
+		
 		<typeAlias type="com.check.entity.AuthInstDirEntity" alias="authInstDirEntity" />
+		<typeAlias type="com.check.entity.MainInstInfoEntity" alias="mainInstInfoEntity" />
 		
 	</typeAliases>
 	
@@ -26,5 +29,6 @@
 	<mappers>
 		<!-- 注册userMapper.xml文件 -->
 		<mapper resource="mapper/IAuthInstDir.xml" />
+		<mapper resource="mapper/IMainInstInfo.xml" />
 	</mappers>
 </configuration>

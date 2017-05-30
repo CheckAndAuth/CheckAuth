@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.check.auth.g3.checkauth.entity.AuthInstDirEntity;
+import com.check.auth.g3.checkauth.entity.MainInstInfoEntity;
 
 public class DataprocessUtils {
 	public static List<AuthInstDirEntity> getAuthInstDir() throws IOException {
@@ -46,4 +47,18 @@ public class DataprocessUtils {
 		return authInstDirEntities;
 	}
 	
+	public static List<MainInstInfoEntity> getMainInstInfo() throws IOException {
+		List<MainInstInfoEntity> mainInstInfoEntities = new ArrayList<MainInstInfoEntity>();
+		String path = "D:\\project\\CheckAuth\\checkauth-core\\src\\main\\resources\\data\\authorg.txt";
+		List<String> lines = Files.readAllLines(Paths.get(path), Charset.forName("UTF-8"));
+		for (String string : lines) {
+			if (StringUtils.isNotBlank(string)) {
+				String[] strs = string.split("\\|",-1);
+				//id,instType,instTypeOrder,ratifyDateOrder,mainInstId,instCode,instName,instStatus,address,
+				//districtCode,districtCodeName,principal,ratifyDate,validityDate,contactPeroson,tel,cccBm,cccName
+				
+			}
+		}
+		return mainInstInfoEntities;
+	}
 }

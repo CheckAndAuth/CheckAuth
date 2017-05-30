@@ -1,0 +1,36 @@
+CREATE TABLE mainInstInfo(
+id INT(10) NOT NULL COMMENT 'id',
+address VARCHAR(200) COMMENT '地址, eg. 北京市丰台区南四环西路188号9区',
+busiScope VARCHAR(500) COMMENT '认证类别代码, eg. A01,A02,A03,A0401,A0403,A0405,A0406,A05,A06,A09,B0210,B0220,B0300,B0311,B0331,B0351,B0371,C0102,PV01,PV02,PV03,PV04,PV05,PV06,PV07,PV08,PV09,PV10,PV11,PV12,PV13,PV14,PV15,PV16,PV17,PV18,SC05,SC06,SC18,SC22',
+busiScopeName VARCHAR(2000) COMMENT '认证类别及认证领域, eg.管理体系认证-A01 质量管理体系认证,管理体系认证-A02 环境管理体系认证,管理体系认证-A03 职业健康安全管理体系认证,管理体系认证-A0401 食品安全管理体系认证,管理体系认证-A0403 危害分析与关键控制点认证,管理体系认证-A0405 乳制品生产企业危害分析与关键控制点(HACCP)体系认证,管理体系认证-A0406 乳制品生产企业良好生产规范认证,管理体系认证-A05 信息安全管理体系认证,管理体系认证-A06 信息技术服务管理体系认证,管理体系认证-A09 能源管理体系认证,服务认证-C0102 绿色市场认证,服务认证-C0102 绿色市场认证（国推）,服务认证-SC05 运输服务（陆路运输服务、水运服务、空运服务、支持性和辅助运输服务）,服务认证-SC06 邮政和速递服务,服务认证-SC18 卫生保健和社会福利,服务认证-SC22 其他服务,自愿性工业产品认证-B0300 低碳产品认证,自愿性工业产品认证-B0311 节能环保汽车认证,自愿性工业产品认证-B0331 电子信息产品污染控制自愿性认证,自愿性工业产品认证-B0351 光伏产品认证,自愿性工业产品认证-B0371 中国电子招标投标系统认证,自愿性工业产品认证-PV02 矿和矿物；电力、可燃气和水,自愿性工业产品认证-PV04 纺织品、服装和皮革制品,自愿性工业产品认证-PV05 木材和木制品；纸浆、纸和纸制品，印刷品,自愿性工业产品认证-PV06 化工类产品,自愿性工业产品认证-PV07 建材产品,自愿性工业产品认证-PV08 家具；其他未分类产品,自愿性工业产品认证-PV09 废旧物资,自愿性工业产品认证-PV10 金属材料及金属制品,自愿性工业产品认证-PV11 机械设备及零部件,自愿性工业产品认证-PV12 电子设备及零部件,自愿性工业产品认证-PV13 电动机、发电机、发电成套设备和变压器,自愿性工业产品认证-PV14 配电和控制设备及其零件；绝缘电线和电缆；光缆,自愿性工业产品认证-PV15 蓄电池、原电池、原电池组和其他电池及其零件,自愿性工业产品认证-PV16 白炽灯泡或放电灯、弧光灯及其附件；照明设备及其附件；其他电气设备及其零件,自愿性工业产品认证-PV17 仪器设备,自愿性工业产品认证-PV18 陆地交通设备,自愿性农产品认证-B0210 有机产品（OGA）,自愿性农产品认证-B0220 良好农业规范（GAP）,自愿性农产品认证-PV01 农林（牧）渔；中药,自愿性农产品认证-PV03 加工食品、饮料和烟草',
+businessNumber VARCHAR(200) COMMENT '业务代码, eg. ',
+cccBusinessScope VARCHAR(2000) COMMENT 'CCC指定业务范围, eg. CNCA-C01-01：电线电缆；',
+contactPeroson VARCHAR(200) COMMENT '联系人',
+districtCode VARCHAR(200) COMMENT '区号, eg. 110106',
+districtCodeName VARCHAR(200) COMMENT '所在地区, eg.北京市丰台区',
+email VARCHAR(200) COMMENT 'email, eg.cqcsc@cqc.com.cn',
+exchangeDate VARCHAR(200) COMMENT '换发日期, eg.2016-09-24',
+fax VARCHAR(200) COMMENT '传真, eg.010-83886282',
+instCode VARCHAR(200) COMMENT '机构批准号, eg.CNCA-R-2002-001',
+instName VARCHAR(200) COMMENT '机构名称, eg.中国质量认证中心',
+instStatus VARCHAR(200) COMMENT '机构状态, eg.01表示有效',
+instType VARCHAR(200) COMMENT '机构类别, eg.01主机构',
+oldInstCode VARCHAR(200) COMMENT '原机构批准号',
+orgCode VARCHAR(200) COMMENT '统一社会信用代码/组织机构代码,eg.717802035',
+post VARCHAR(6) COMMENT '邮编,eg.100070',
+principal VARCHAR(200) COMMENT '法定代表人, eg.王克娇',
+principalRegNum VARCHAR(200) COMMENT '法人注册号, eg.110000002303',
+principalTypeName VARCHAR(200) COMMENT '法人类型, eg.事业单位',
+ratifyDate VARCHAR(200) COMMENT '颁发日期,eg. 2002-12-10',
+recordScope VARCHAR(2000) COMMENT '颁发日期,eg. 1、Global GAP；2、温室气体排放和清除的量化和报告的规范及指南ISO14064',
+recordTs VARCHAR(2000) COMMENT '登记日期,eg.2017-03-09 16:38:05',
+regCapital VARCHAR(20) COMMENT 'eg.18000';
+regCapitalType VARCHAR(20) COMMENT 'eg.01';
+remarks VARCHAR(200) COMMENT 'eg.备注, eg.经批准的其他认证：分包IQ Net成员认证机构的管理体系认证业务。';
+tel VARCHAR(200) COMMENT '联系电话, eg.010-83886666',
+validityDate VARCHAR(200) COMMENT '有效截止日期, eg.2018-12-10',
+website VARCHAR(200) COMMENT '网址, eg.www.cqc.com.cn',
+zdjgBm VARCHAR(200) COMMENT '01',
+zdjgName VARCHAR(200) COMMENT '中国质量认证中心',
+PRIMARY KEY  (`id`)
+)COMMENT='主机构信息';

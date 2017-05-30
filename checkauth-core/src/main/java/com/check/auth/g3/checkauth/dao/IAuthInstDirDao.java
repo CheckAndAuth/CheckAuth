@@ -3,7 +3,11 @@ package com.check.auth.g3.checkauth.dao;
 import java.util.List;
 
 import com.check.auth.g3.checkauth.entity.AuthInstDirEntity;
-
+/**
+ * @desc 机构认证目录
+ * @author
+ *
+ */
 public interface IAuthInstDirDao {
 	/**
 	 * @desc 批量插入

@@ -1,25 +1,24 @@
 package com.check.auth.g3.checkauth.entity;
 
 public class AuthInstDirEntity {
-//id,instType,instTypeOrder,ratifyDateOrder,mainInstId,instCode,instName,instStatus,address,districtCode,principal,ratifyDate,validityDate,contactPeroson,tel,cccBm,cccName
-	private int id;
-	private String instType;
-	private String instTypeOrder;
-	private String ratifyDateOrder;
-	private int mainInstId;
-	private String instCode;
-	private String instName;
-	private String instStatus;
-	private String address;
-	private String districtCode;
-	private String districtCodeName;
-	private String principal;
-	private String ratifyDate;
-	private String validityDate;
-	private String contactPeroson;
-	private String tel;
-	private String cccBm;
-	private String cccName;
+	private int id;//id
+	private String instType;//机构类别
+	private String instTypeOrder;//机构类别排序
+	private String ratifyDateOrder;//批准成立日期
+	private int mainInstId;//主机构id
+	private String instCode;//机构批准号
+	private String instName;//机构名称
+	private String instStatus;//机构状态
+	private String address;//地址
+	private String districtCode;//区号
+	private String districtCodeName;//所在地区
+	private String principal;//法人
+	private String ratifyDate;//批准成立日期
+	private String validityDate;//有效截止日期
+	private String contactPeroson;//联系人
+	private String tel;//联系电话
+	private String cccBm;//cccBm
+	private String cccName;//机构名称
 	public int getId() {
 		return id;
 	}
@@ -136,6 +135,10 @@ public class AuthInstDirEntity {
 				+ districtCode + ", districtCodeName=" + districtCodeName + ", principal=" + principal + ", ratifyDate="
 				+ ratifyDate + ", validityDate=" + validityDate + ", contactPeroson=" + contactPeroson + ", tel=" + tel
 				+ ", cccBm=" + cccBm + ", cccName=" + cccName + "]";
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("hello");
 	}
 	
 }

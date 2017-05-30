@@ -1,6 +1,6 @@
-package com.check.auth.g3.checkauth.entity;
+package com.check.auth.g3.core.checkauth.entity;
 
-public class AuthInstDirEntity {
+public class AuthInstEntity {
 //id,instType,instTypeOrder,ratifyDateOrder,mainInstId,instCode,instName,instStatus,address,districtCode,principal,ratifyDate,validityDate,contactPeroson,tel,cccBm,cccName
 	private int id;
 	private String instType;

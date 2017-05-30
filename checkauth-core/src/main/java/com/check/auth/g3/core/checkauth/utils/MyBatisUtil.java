@@ -1,4 +1,4 @@
-package com.check.auth.g3.checkauth.utils;
+package com.check.auth.g3.core.checkauth.utils;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;

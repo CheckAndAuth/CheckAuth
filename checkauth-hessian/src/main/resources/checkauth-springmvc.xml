@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+
+<bean id="mappingJacksonHttpMessageConverter"
+      class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+    <property name="objectMapper">
+        <bean class="org.codehaus.jackson.map.ObjectMapper">
+            <property name="serializationInclusion" value="NON_NULL">
+            </property>
+        </bean>
+    </property>
+</bean>
+
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <!-- 最大上传文件大小 -->
+    <property name="maxUploadSize">
+        <value>20971520</value>
+    </property>
+    <property name="maxInMemorySize">
+        <value>2048</value>
+    </property>
+</bean>
+
+<!-- 配置控制器扫描范围 -->
+<context:component-scan base-package="com.check.auth.g3.hessian.checkauth.controller" use-default-filters="false">
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+</context:component-scan>
+
+<mvc:annotation-driven>
+    <mvc:message-converters>
+        <ref bean="mappingJacksonHttpMessageConverter"/>
+    </mvc:message-converters>
+</mvc:annotation-driven>
+<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    <property name="webBindingInitializer">
+        <bean
+                class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+            <property name="validator" ref="validator"/>
+        </bean>
+    </property>
+</bean>
+
+<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+
+<bean id="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix" value="/WEB-INF/pages/"/>
+    <property name="suffix" value=".jsp"/>
+</bean>
+
+<!-- 异常处理器 -->
+<bean class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver">
+    <property name="order" value="-100"/>
+    <property name="messageConverters" ref="mappingJacksonHttpMessageConverter"/>
+</bean>
+<bean class="org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver">
+    <property name="order" value="-99"/>
+</bean>
+<bean class="org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver">
+    <property name="order" value="-97"/>
+</bean>
+</beans>
+
+	
+	

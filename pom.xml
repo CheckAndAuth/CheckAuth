@@ -4,8 +4,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.check.auth.g3</groupId>
-	<artifactId>check-auth</artifactId>
+	<artifactId>checkauth-parent</artifactId>
 	<version>1.0-SNAPSHOT</version>
+    <name>checkauth-parent</name>
+    <packaging>pom</packaging>
+    <modules>
+        <module>checkauth-facade</module>
+        <module>checkauth-core</module>
+        <module>checkauth-hessian</module>
+    </modules>
 	<dependencies>
 		<dependency>
 			<groupId>apache-httpclient</groupId>

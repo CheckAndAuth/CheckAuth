@@ -15,8 +15,7 @@ import com.check.entity.AuthInstDirEntity;
 public class SpringUtils {
 	public List<AuthInstDirEntity> getAuthInstDir() throws IOException {
 		List<AuthInstDirEntity> authInstDirEntities = new ArrayList<AuthInstDirEntity>();
-//		String path = Thread.currentThread().getContextClassLoader().getResource("/认证目录机构.txt").getPath();
-		String path = "D:\\project\\CheckAuth\\src\\main\\resources\\认证机构\\认证目录机构.txt";
+		String path = "D:\\project\\CheckAuth\\src\\main\\resources\\璁よ瘉鏈烘瀯\\璁よ瘉鐩綍鏈烘瀯.txt";
 //		System.out.println(path);
 		List<String> lines = Files.readAllLines(Paths.get(path), Charset.forName("UTF-8"));
 		int i = 0;

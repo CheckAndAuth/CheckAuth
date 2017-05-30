@@ -1,25 +1,24 @@
-package com.check.auth.g3.core.checkauth.entity;
+package com.check.auth.g3.checkauth.entity;
 
-public class AuthInstEntity {
-//id,instType,instTypeOrder,ratifyDateOrder,mainInstId,instCode,instName,instStatus,address,districtCode,principal,ratifyDate,validityDate,contactPeroson,tel,cccBm,cccName
-	private int id;
-	private String instType;
-	private String instTypeOrder;
-	private String ratifyDateOrder;
-	private int mainInstId;
-	private String instCode;
-	private String instName;
-	private String instStatus;
-	private String address;
-	private String districtCode;
-	private String districtCodeName;
-	private String principal;
-	private String ratifyDate;
-	private String validityDate;
-	private String contactPeroson;
-	private String tel;
-	private String cccBm;
-	private String cccName;
+public class AuthInstDirEntity {
+	private int id;//id
+	private String instType;//�������
+	private String instTypeOrder;//�����������
+	private String ratifyDateOrder;//��׼��������
+	private int mainInstId;//������id
+	private String instCode;//������׼��
+	private String instName;//��������
+	private String instStatus;//����״̬
+	private String address;//��ַ
+	private String districtCode;//����
+	private String districtCodeName;//���ڵ���
+	private String principal;//����
+	private String ratifyDate;//��׼��������
+	private String validityDate;//��Ч��ֹ����
+	private String contactPeroson;//��ϵ��
+	private String tel;//��ϵ�绰
+	private String cccBm;//cccBm
+	private String cccName;//��������
 	public int getId() {
 		return id;
 	}
@@ -136,6 +135,10 @@ public class AuthInstEntity {
 				+ districtCode + ", districtCodeName=" + districtCodeName + ", principal=" + principal + ", ratifyDate="
 				+ ratifyDate + ", validityDate=" + validityDate + ", contactPeroson=" + contactPeroson + ", tel=" + tel
 				+ ", cccBm=" + cccBm + ", cccName=" + cccName + "]";
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("hello");
 	}
 	
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="iMainInstInfoDao">
+    <select id="selectMainInstInfoByInstCode"  resultType="mainInstInfoEntity" parameterType="java.lang.String">
+        SELECT * FROM mainInstInfo WHERE instCode=#{instCode}
+    </select>
+
+    <insert id="insertMainInstInfo" parameterType="java.util.List">
+        insert into mainInstInfo (id,address,busiScope,busiScopeName,businessNumber,cccBusinessScope,contactPeroson,districtCode,districtCodeName,email,exchangeDate,fax,instCode,instName,instStatus,instType,oldInstCode,orgCode,post,principal,principalRegNum,principalTypeName,ratifyDate,recordScope,recordTs,regCapital,regCapitalType,remarks,tel,validityDate,website,zdjgBm,zdjgName) values
+        <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.id},#{item.address},#{item.busiScope},#{item.busiScopeName},#{item.businessNumber},#{item.cccBusinessScope},#{item.contactPeroson},#{item.districtCode},#{item.districtCodeName},#{item.email},#{item.exchangeDate},#{item.fax},#{item.instCode},#{item.instName},#{item.instStatus},#{item.instType},#{item.oldInstCode},#{item.orgCode},{#post},{#principal},{#principalRegNum},{#principalTypeName},{#ratifyDate},{#recordScope},{#recordTs},{#regCapital},{#regCapitalType},{#remarks},{#tel},{#validityDate},{#website},{#zdjgBm},{#zdjgName})
+        </foreach>
+    </insert>
+
+</mapper>

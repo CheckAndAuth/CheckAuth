@@ -71,11 +71,11 @@
             <artifactId>mybatis-spring</artifactId>
         </dependency>
 
-        <dependency>
+        <!-- <dependency>
             <groupId>org.dom4j</groupId>
             <artifactId>dom4j</artifactId>
             <version>1.6.1</version>
-        </dependency>
+        </dependency> -->
 
         <dependency>
             <groupId>commons-io</groupId>

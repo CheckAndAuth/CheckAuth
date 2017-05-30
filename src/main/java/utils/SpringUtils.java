@@ -28,7 +28,7 @@ public class SpringUtils {
 			
 			if (StringUtils.isNotBlank(string)) {
 				String[] strs = string.split("\\|");
-				System.out.println(strs.length);
+				System.out.println(strs[0] + "\t" + strs.length);
 				AuthInstDirEntity authInstDirEntity = new AuthInstDirEntity();
 				//id,instType,instTypeOrder,ratifyDateOrder,mainInstId,instCode,instName,instStatus,address,
 				//districtCode,principal,ratifyDate,validityDate,contactPeroson,tel,cccBm,cccName

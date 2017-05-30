@@ -19,4 +19,10 @@ public interface IMainInstInfoDao {
 	 * @param mainInstInfoEntity
 	 */
 	public void insert(MainInstInfoEntity mainInstInfoEntity); 
+	/**
+	 * @desc 根据机构批准号查找主机构信息
+	 * @param instCode
+	 * @return
+	 */
+	public MainInstInfoEntity selectMainInstInfoByInstCode(String instCode);
 }

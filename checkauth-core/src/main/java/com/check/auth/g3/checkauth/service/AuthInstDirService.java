@@ -34,16 +34,15 @@ public class AuthInstDirService {
         session.close();
 	}
 	
+	public AuthInstDirEntity queryByInstCode(String instCode){
+		SqlSessionFactory sqlSession =  MyBatisUtil.getSqlSessionFactory();
+        SqlSession session =  sqlSession.openSession();
+        IAuthInstDirDao iAuthInstDirDao = session.getMapper(IAuthInstDirDao.class);
+        return iAuthInstDirDao.queryByInstCode(instCode);
+	}
+	
 	public static void main(String[] args) {
 		AuthInstDirService authInstDirService = new AuthInstDirService();
-		try {
-			authInstDirService.insertAuthInstDir(DataprocessUtils.getAuthInstDir());
-//			List<AuthInstDirEntity> authInstDirEntities = DataprocessUtils.getAuthInstDir();
-//			for (AuthInstDirEntity authInstDirEntity : authInstDirEntities) {
-//				authInstDirService.insert(authInstDirEntity);
-//			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		System.out.println(authInstDirService.queryByInstCode("CNCA-R-2002-001"));
 	}
 }

@@ -19,4 +19,13 @@ public interface IAuthInstDirDao {
 	 * @param authInstDirEntity
 	 */
 	public void insert(AuthInstDirEntity authInstDirEntity); 
+	/**
+	 * @desc 根据机构批准号查找信息
+	 * @param instCode
+	 * @return
+	 */
+	public AuthInstDirEntity queryByInstCode(String instCode);
+	
+	
+	
 }

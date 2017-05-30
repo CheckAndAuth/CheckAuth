@@ -10,7 +10,7 @@ import com.check.auth.g3.checkauth.entity.MainInstInfoEntity;
 import com.check.auth.g3.checkauth.utils.MyBatisUtil;
 
 public class MainInstInfoService {
-	public void insertAuthInstDir(List<MainInstInfoEntity> mainInstInfoEntities){
+	public void insertMainInstInfo(List<MainInstInfoEntity> mainInstInfoEntities){
 		SqlSessionFactory sqlSession =  MyBatisUtil.getSqlSessionFactory();
         SqlSession session =  sqlSession.openSession();
         IMainInstInfoDao iMainInstInfoDao = session.getMapper(IMainInstInfoDao.class);
@@ -23,6 +23,12 @@ public class MainInstInfoService {
         session.close();
 	}
 	
+	public MainInstInfoEntity selectMainInstInfoByInstCode(String instCode){
+		SqlSessionFactory sqlSession =  MyBatisUtil.getSqlSessionFactory();
+        SqlSession session =  sqlSession.openSession();
+        IMainInstInfoDao iMainInstInfoDao = session.getMapper(IMainInstInfoDao.class);
+        return iMainInstInfoDao.selectMainInstInfoByInstCode(instCode);
+	}
 	
 	public static void main(String[] args) {
 		MainInstInfoService mainInstInfoService = new MainInstInfoService();

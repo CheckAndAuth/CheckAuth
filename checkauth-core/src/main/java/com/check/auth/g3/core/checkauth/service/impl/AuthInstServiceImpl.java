@@ -18,7 +18,7 @@ public class AuthInstServiceImpl implements AuthInstService {
     }
 
 	@Override
-	public AuthInstEntity selectAuthOrgViewByInstCode(String instCode) {
-		return authInstMapper.selectAuthOrgViewByInstCode(instCode);
+	public AuthInstEntity selectAuthInstByInstCode(String instCode) {
+		return authInstMapper.selectAuthInstByInstCode(instCode);
 	}
 }

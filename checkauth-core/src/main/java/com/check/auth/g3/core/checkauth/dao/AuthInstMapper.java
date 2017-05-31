@@ -18,7 +18,7 @@ public interface AuthInstMapper {
 	 * @param instCode
 	 * @return
 	 */
-	public AuthInstEntity selectAuthOrgViewByInstCode(String instCode);
+	public AuthInstEntity selectAuthInstByInstCode(String instCode);
 	
 	
 	

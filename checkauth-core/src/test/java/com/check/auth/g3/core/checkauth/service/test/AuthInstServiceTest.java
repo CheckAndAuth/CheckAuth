@@ -16,6 +16,6 @@ public class AuthInstServiceTest {
 	
 	@Test
 	public void test() {
-		authInstService.selectAuthOrgViewByInstCode("CNCA-R-2002-001");
+		System.out.println(authInstService.selectAuthInstByInstCode("CNCA-R-2002-001"));
 	}
 }

@@ -16,4 +16,9 @@ public class AuthInstServiceImpl implements AuthInstService {
     public void insertAuthInst(AuthInstEntity authInstDirEntity) {
         authInstMapper.insertAuthInst(authInstDirEntity);
     }
+
+	@Override
+	public AuthInstEntity selectAuthOrgViewByInstCode(String instCode) {
+		return authInstMapper.selectAuthOrgViewByInstCode(instCode);
+	}
 }

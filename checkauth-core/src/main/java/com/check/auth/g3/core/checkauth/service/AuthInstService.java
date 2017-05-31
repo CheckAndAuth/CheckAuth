@@ -5,4 +5,6 @@ import com.check.auth.g3.core.checkauth.entity.AuthInstEntity;
 public interface AuthInstService {
 
     public void insertAuthInst(AuthInstEntity authInstDirEntity);
+    
+    public AuthInstEntity selectAuthOrgViewByInstCode(String instCode);
 }

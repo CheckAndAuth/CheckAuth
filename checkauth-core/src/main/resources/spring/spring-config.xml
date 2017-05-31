@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
 	<!-- Scans for application @Components to deploy -->
-	<context:component-scan base-package="com.check.auth.g3.core.checkauth.dao.impl" />
+    <context:component-scan base-package="com.check.auth.g3.core.checkauth.service.impl"/>
 
 
     <!-- 使用JDBC事物 -->

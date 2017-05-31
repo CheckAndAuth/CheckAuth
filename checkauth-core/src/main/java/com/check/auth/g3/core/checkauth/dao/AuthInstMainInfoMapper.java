@@ -2,12 +2,14 @@ package com.check.auth.g3.core.checkauth.dao;
 
 
 import com.check.auth.g3.core.checkauth.entity.AuthInstMainInfoEntity;
+import org.springframework.stereotype.Repository;
 
 /**
  * @desc 主机构信息
  * @author 
  *
  */
+@Repository("authInstMainInfoMapper")
 public interface AuthInstMainInfoMapper {
 	/**
 	 * @desc 单条插入

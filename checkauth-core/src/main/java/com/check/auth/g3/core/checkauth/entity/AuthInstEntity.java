@@ -2,23 +2,23 @@ package com.check.auth.g3.core.checkauth.entity;
 
 public class AuthInstEntity {
 	private int id;//id
-	private String instType;//�������
-	private String instTypeOrder;//�����������
-	private String ratifyDateOrder;//��׼��������
-	private int mainInstId;//������id
-	private String instCode;//������׼��
-	private String instName;//��������
-	private String instStatus;//����״̬
-	private String address;//��ַ
-	private String districtCode;//����
-	private String districtCodeName;//���ڵ���
-	private String principal;//����
-	private String ratifyDate;//��׼��������
-	private String validityDate;//��Ч��ֹ����
-	private String contactPeroson;//��ϵ��
-	private String tel;//��ϵ�绰
+	private String instType;//机构类型
+	private String instTypeOrder;//机构类型顺序
+	private String ratifyDateOrder;//批准成立日期
+	private int mainInstId;//主机构id
+	private String instCode;//机构批准号
+	private String instName;//机构名称
+	private String instStatus;//机构状态
+	private String address;//地址
+	private String districtCode;//区号
+	private String districtCodeName;//所在地区
+	private String principal;//法人
+	private String ratifyDate;//批准成立日期
+	private String validityDate;//有效截止日期
+	private String contactPeroson;//联系人
+	private String tel;//联系电话
 	private String cccBm;//cccBm
-	private String cccName;//��������
+	private String cccName;//3C名称
 	public int getId() {
 		return id;
 	}
@@ -129,16 +129,12 @@ public class AuthInstEntity {
 	}
 	@Override
 	public String toString() {
-		return "AuthInstDirEntity [id=" + id + ", instType=" + instType + ", instTypeOrder=" + instTypeOrder
+		return "AuthInstEntity [id=" + id + ", instType=" + instType + ", instTypeOrder=" + instTypeOrder
 				+ ", ratifyDateOrder=" + ratifyDateOrder + ", mainInstId=" + mainInstId + ", instCode=" + instCode
 				+ ", instName=" + instName + ", instStatus=" + instStatus + ", address=" + address + ", districtCode="
 				+ districtCode + ", districtCodeName=" + districtCodeName + ", principal=" + principal + ", ratifyDate="
 				+ ratifyDate + ", validityDate=" + validityDate + ", contactPeroson=" + contactPeroson + ", tel=" + tel
 				+ ", cccBm=" + cccBm + ", cccName=" + cccName + "]";
-	}
-	
-	public static void main(String[] args) {
-		System.out.println("hello");
 	}
 	
 }

@@ -24,9 +24,9 @@ principalTypeName VARCHAR(200) COMMENT '法人类型, eg.事业单位',
 ratifyDate VARCHAR(200) COMMENT '颁发日期,eg. 2002-12-10',
 recordScope VARCHAR(2000) COMMENT '颁发日期,eg. 1、Global GAP；2、温室气体排放和清除的量化和报告的规范及指南ISO14064',
 recordTs VARCHAR(2000) COMMENT '登记日期,eg.2017-03-09 16:38:05',
-regCapital VARCHAR(20) COMMENT 'eg.18000';
-regCapitalType VARCHAR(20) COMMENT 'eg.01';
-remarks VARCHAR(200) COMMENT 'eg.备注, eg.经批准的其他认证：分包IQ Net成员认证机构的管理体系认证业务。';
+regCapital VARCHAR(20) COMMENT 'eg.18000',
+regCapitalType VARCHAR(20) COMMENT 'eg.01',
+remarks VARCHAR(200) COMMENT 'eg.备注, eg.经批准的其他认证：分包IQ Net成员认证机构的管理体系认证业务。',
 tel VARCHAR(200) COMMENT '联系电话, eg.010-83886666',
 validityDate VARCHAR(200) COMMENT '有效截止日期, eg.2018-12-10',
 website VARCHAR(200) COMMENT '网址, eg.www.cqc.com.cn',

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.check.auth.g3.core.checkauth.dao.AuthInstMainInfoMapper">
+
+	<resultMap
+		type="com.check.auth.g3.core.checkauth.entity.AuthInstMainInfoEntity"
+		id="authInstMainInfoEntityList">
+		<result property="id               " column="id               " />
+		<result property="address          " column="address          " />
+		<result property="busiScope        " column="busiScope        " />
+		<result property="busiScopeName    " column="busiScopeName    " />
+		<result property="businessNumber   " column="businessNumber   " />
+		<result property="cccBusinessScope " column="cccBusinessScope " />
+		<result property="contactPeroson   " column="contactPeroson   " />
+		<result property="districtCode     " column="districtCode     " />
+		<result property="districtCodeName " column="districtCodeName " />
+		<result property="email            " column="email            " />
+		<result property="exchangeDate     " column="exchangeDate     " />
+		<result property="fax              " column="fax              " />
+		<result property="instCode         " column="instCode         " />
+		<result property="instName         " column="instName         " />
+		<result property="instStatus       " column="instStatus       " />
+		<result property="instType         " column="instType         " />
+		<result property="oldInstCode      " column="oldInstCode      " />
+		<result property="orgCode          " column="orgCode          " />
+		<result property="post             " column="post             " />
+		<result property="principal        " column="principal        " />
+		<result property="principalRegNum  " column="principalRegNum  " />
+		<result property="principalTypeName" column="principalTypeName" />
+		<result property="ratifyDate       " column="ratifyDate       " />
+		<result property="recordScope      " column="recordScope      " />
+		<result property="recordTs         " column="recordTs         " />
+		<result property="regCapital       " column="regCapital       " />
+		<result property="regCapitalType   " column="regCapitalType   " />
+		<result property="remarks          " column="remarks          " />
+		<result property="tel              " column="tel              " />
+		<result property="validityDate     " column="validityDate     " />
+		<result property="website          " column="website          " />
+		<result property="zdjgBm           " column="zdjgBm           " />
+		<result property="zdjgName         " column="zdjgName         " />
+		<result property="orgType          " column="orgType          " />
+		<result property="CNASRecognization" column="CNASRecognization" />
+		<result property="outSideRecognization" column="outSideRecognization" />
+		<result property="highNewTecRec" column="highNewTecRec" />
+
+	</resultMap>
+	<sql id="selectSql">
+		select 
+		t1.id,
+		t1.address,
+		t1.busiScope,
+		t1.busiScopeName,
+		t1.businessNumber,
+		t1.cccBusinessScope,
+		t1.contactPeroson,
+		t1.districtCode,
+		t1.districtCodeName,
+		t1.email,
+		t1.exchangeDate,
+		t1.fax,
+		t1.instCode,
+		t1.instName,
+		t1.instStatus,
+		t1.instType,
+		t1.oldInstCode,
+		t1.orgCode,
+		t1.post,
+		t1.principal,
+		t1.principalRegNum,
+		t1.principalTypeName,
+		t1.ratifyDate,
+		t1.recordScope,
+		t1.recordTs,
+		t1.regCapital,
+		t1.regCapitalType,
+		t1.remarks,
+		t1.tel,
+		t1.validityDate,
+		t1.website,
+		t1.zdjgBm,
+		t1.zdjgName,
+		t2.orgType,
+		t2.CNASRecognization,
+		t2.outSideRecognization,
+		t2.highNewTecRec
+		from tbl_auth_inst_main_info
+		t1,tbl_inst_cert_auth t2
+		where t1.orgCode = t2.orgId
+
+	</sql>
+	<select id="getAuthMainInfo"
+		resultMap="authInstMainInfoEntityList"
+		parameterType="java.lang.String">
+		<include refid="selectSql"></include>
+		and t1.instName like CONCAT('%',#{keyword},'%')
+		or t1.busiScopeName
+		like CONCAT('%',#{keyword},'%')
+		or t1.districtCodeName like
+		CONCAT('%',#{keyword},'%')
+		ORDER BY t1.id
+		LIMIT 5
+		
+	</select>
+	<select id="getAuthMainInfoByInstName"
+		resultMap="authInstMainInfoEntityList"
+		parameterType="java.lang.String">
+		<include refid="selectSql"></include>
+		and t1.instName like CONCAT('%',#{instName},'%')
+		order by t1.id
+		limit 5
+	</select>
+	<select id="getAuthMainInfoByBusiScopeName"
+		resultMap="authInstMainInfoEntityList"
+		parameterType="java.lang.String">
+		<include refid="selectSql"></include>
+		and t1.busiScopeName
+		like CONCAT('%',#{busiScopeName},'%')
+		order by t1.id
+		limit 5
+	</select>
+	<select id="getAuthMainInfoByDistrictCodeName"
+		resultMap="authInstMainInfoEntityList"
+		parameterType="java.lang.String">
+		<include refid="selectSql"></include>
+		and t1.districtCodeName like
+		CONCAT('%',#{keyword},'%')
+		order by t1.id
+		limit 5
+	</select>
+	<insert id="insert"
+		parameterType="com.check.auth.g3.core.checkauth.entity.AuthInstMainInfoEntity">
+		insert into tbl_auth_inst_main_info
+		(id,address,busiScope,busiScopeName,businessNumber,cccBusinessScope,contactPeroson,districtCode,districtCodeName,email,exchangeDate,fax,instCode,instName,instStatus,instType,oldInstCode,orgCode,post,principal,principalRegNum,principalTypeName,ratifyDate,recordScope,recordTs,regCapital,regCapitalType,remarks,tel,validityDate,website,zdjgBm,zdjgName)
+		values(#{id},#{address},#{busiScope},#{busiScopeName},#{businessNumber},#{cccBusinessScope},#{contactPeroson},#{districtCode},#{districtCodeName},#{email},#{exchangeDate},#{fax},#{instCode},#{instName},#{instStatus},#{instType},#{oldInstCode},#{orgCode},#{post},#{principal},#{principalRegNum},#{principalTypeName},#{ratifyDate},#{recordScope},#{recordTs},#{regCapital},#{regCapitalType},#{remarks},#{tel},#{validityDate},#{website},#{zdjgBm},#{zdjgName})
+	</insert>
+</mapper>
+

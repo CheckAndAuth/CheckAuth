@@ -34,6 +34,11 @@ public class AuthInstMainInfoEntity {
 	private String website;//网址, eg.www.cqc.com.cn
 	private String zdjgBm;//eg.01
 	private String zdjgName;//中国质量认证中心
+	
+	private String cnasRec;//CNAS认可
+	private String outsideRec;//境外认可
+	private String highnewTecRec;//高新技术认可
+	
 	public String getAddress() {
 		return address;
 	}
@@ -232,9 +237,28 @@ public class AuthInstMainInfoEntity {
 	public void setZdjgName(String zdjgName) {
 		this.zdjgName = zdjgName;
 	}
+	
+	public String getCnasRec() {
+		return cnasRec;
+	}
+	public void setCnasRec(String cnasRec) {
+		this.cnasRec = cnasRec;
+	}
+	public String getOutsideRec() {
+		return outsideRec;
+	}
+	public void setOutsideRec(String outsideRec) {
+		this.outsideRec = outsideRec;
+	}
+	public String getHighnewTecRec() {
+		return highnewTecRec;
+	}
+	public void setHighnewTecRec(String highnewTecRec) {
+		this.highnewTecRec = highnewTecRec;
+	}
 	@Override
 	public String toString() {
-		return "MainInstInfoEntity [address=" + address + ", busiScope=" + busiScope + ", busiScopeName="
+		return "AuthInstMainInfoEntity [address=" + address + ", busiScope=" + busiScope + ", busiScopeName="
 				+ busiScopeName + ", businessNumber=" + businessNumber + ", cccBusinessScope=" + cccBusinessScope
 				+ ", contactPeroson=" + contactPeroson + ", districtCode=" + districtCode + ", districtCodeName="
 				+ districtCodeName + ", email=" + email + ", exchangeDate=" + exchangeDate + ", fax=" + fax + ", id="
@@ -244,7 +268,8 @@ public class AuthInstMainInfoEntity {
 				+ principalTypeName + ", ratifyDate=" + ratifyDate + ", recordScope=" + recordScope + ", recordTs="
 				+ recordTs + ", regCapital=" + regCapital + ", regCapitalType=" + regCapitalType + ", remarks="
 				+ remarks + ", tel=" + tel + ", validityDate=" + validityDate + ", website=" + website + ", zdjgBm="
-				+ zdjgBm + ", zdjgName=" + zdjgName + "]";
+				+ zdjgBm + ", zdjgName=" + zdjgName + ", cnasRec=" + cnasRec + ", outsideRec=" + outsideRec
+				+ ", highnewTecRec=" + highnewTecRec + "]";
 	}
 	
 	

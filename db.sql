@@ -1,6 +1,6 @@
 CREATE TABLE tbl_auth_inst(
 id INT(10) NOT NULL COMMENT 'id',
-instType VARCHAR(200) COMMENT '机构类别, eg.01主机构',
+instType VARCHAR(200) COMMENT '机构类别, eg.01主机构,02子公司,03分公司,04办事机构',
 instTypeOrder VARCHAR(200) COMMENT '机构类别排序, eg.01',
 ratifyDateOrder VARCHAR(200) COMMENT '批准成立日期, eg.2002-12-10',
 mainInstId INT(10) COMMENT '一般与id相同',

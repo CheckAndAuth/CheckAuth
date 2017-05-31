@@ -17,8 +17,8 @@ public class AuthInstMainInfoServiceTest {
 	@Test
 	public void test() {
 		System.out.println(authInstMainInfoService.getAuthMainInfoByKeyWord("检测认证"));
-//		System.out.println(authInstMainInfoService.getAuthMainInfoByInstName("检测认证"));
-//		System.out.println(authInstMainInfoService.getAuthMainInfoByBusiScopeName("检测认证"));
-//		System.out.println(authInstMainInfoService.getAuthMainInfoByDistrictCodeName("检测认证"));
+		System.out.println(authInstMainInfoService.getAuthMainInfoByInstName("检测认证"));
+		System.out.println(authInstMainInfoService.getAuthMainInfoByBusiScopeName("检测认证"));
+		System.out.println(authInstMainInfoService.getAuthMainInfoByDistrictCodeName("检测认证"));
 	}
 }

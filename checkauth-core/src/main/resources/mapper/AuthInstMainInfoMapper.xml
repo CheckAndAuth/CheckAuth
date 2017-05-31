@@ -90,7 +90,7 @@
 		where t1.orgCode = t2.orgId
 
 	</sql>
-	<select id="getAuthMainInfo"
+	<select id="getAuthMainInfoByKeyWord"
 		resultMap="authInstMainInfoEntityList"
 		parameterType="java.lang.String">
 		<include refid="selectSql"></include>

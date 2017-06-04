@@ -15,7 +15,7 @@ public class AuthInstEntity {
 	private String principal;//法人
 	private String ratifyDate;//批准成立日期
 	private String validityDate;//有效截止日期
-	private String contactPeroson;//联系人
+	private String contactPerson;//联系人
 	private String tel;//联系电话
 	private String cccBm;//cccBm
 	private String cccName;//3C名称
@@ -103,11 +103,11 @@ public class AuthInstEntity {
 	public void setValidityDate(String validityDate) {
 		this.validityDate = validityDate;
 	}
-	public String getContactPeroson() {
-		return contactPeroson;
+	public String getContactPerson() {
+		return contactPerson;
 	}
-	public void setContactPeroson(String contactPeroson) {
-		this.contactPeroson = contactPeroson;
+	public void setContactPerson(String contactPerson) {
+		this.contactPerson = contactPerson;
 	}
 	public String getTel() {
 		return tel;
@@ -133,7 +133,7 @@ public class AuthInstEntity {
 				+ ", ratifyDateOrder=" + ratifyDateOrder + ", mainInstId=" + mainInstId + ", instCode=" + instCode
 				+ ", instName=" + instName + ", instStatus=" + instStatus + ", address=" + address + ", districtCode="
 				+ districtCode + ", districtCodeName=" + districtCodeName + ", principal=" + principal + ", ratifyDate="
-				+ ratifyDate + ", validityDate=" + validityDate + ", contactPeroson=" + contactPeroson + ", tel=" + tel
+				+ ratifyDate + ", validityDate=" + validityDate + ", contactPeroson=" + contactPerson + ", tel=" + tel
 				+ ", cccBm=" + cccBm + ", cccName=" + cccName + "]";
 	}
 	

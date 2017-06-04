@@ -1,6 +1,6 @@
 package com.check.auth.g3.core.checkauth.service.test;
 
-import com.check.auth.g3.core.checkauth.service.AuthInstMainInfoService;
+import com.check.auth.g3.core.checkauth.service.AuthInstDetailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +12,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class AuthInstMainInfoServiceTest {
 
 	@Autowired
-	AuthInstMainInfoService authInstMainInfoService;
+    AuthInstDetailService authInstMainInfoService;
 	
 	@Test
 	public void test() {
-		System.out.println(authInstMainInfoService.getAuthMainInfoByKeyWord("检测认证"));
-		System.out.println(authInstMainInfoService.getAuthMainInfoByInstName("检测认证"));
-		System.out.println(authInstMainInfoService.getAuthMainInfoByBusiScopeName("检测认证"));
-		System.out.println(authInstMainInfoService.getAuthMainInfoByDistrictCodeName("检测认证"));
 	}
 }

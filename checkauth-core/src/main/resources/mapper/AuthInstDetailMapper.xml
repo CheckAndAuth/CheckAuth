@@ -2,11 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.check.auth.g3.core.checkauth.dao.AuthInstMainInfoMapper">
+<mapper namespace="com.check.auth.g3.core.checkauth.dao.AuthInstDetailMapper">
 
-	<resultMap
-		type="com.check.auth.g3.core.checkauth.entity.AuthInstMainInfoEntity"
-		id="authInstMainInfoEntityList">
+	<resultMap id="detailMap" type="com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity">
 		<result property="id               " column="id               " />
 		<result property="address          " column="address          " />
 		<result property="busiScope        " column="busiScope        " />
@@ -47,7 +45,6 @@
 
 	</resultMap>
 	<sql id="selectSql">
-		select 
 		t1.id,
 		t1.address,
 		t1.busiScope,
@@ -90,9 +87,7 @@
 		where t1.orgCode = t2.orgId
 
 	</sql>
-	<select id="getAuthMainInfoByKeyWord"
-		resultMap="authInstMainInfoEntityList"
-		parameterType="java.lang.String">
+	<select id="getAuthMainInfoByKeyWord" resultMap="detailMap" parameterType="java.lang.String">
 		<include refid="selectSql"></include>
 		and t1.instName like CONCAT('%',#{keyword},'%')
 		or t1.busiScopeName
@@ -103,16 +98,15 @@
 		LIMIT 5
 		
 	</select>
-	<select id="getAuthMainInfoByInstName"
-		resultMap="authInstMainInfoEntityList"
-		parameterType="java.lang.String">
+	<select id="getAuthMainInfoByInstName" resultMap="detailMap" parameterType="java.lang.String">
+        select
 		<include refid="selectSql"></include>
 		and t1.instName like CONCAT('%',#{instName},'%')
 		order by t1.id
 		limit 5
 	</select>
 	<select id="getAuthMainInfoByBusiScopeName"
-		resultMap="authInstMainInfoEntityList"
+		resultMap="detailMap"
 		parameterType="java.lang.String">
 		<include refid="selectSql"></include>
 		and t1.busiScopeName
@@ -121,7 +115,7 @@
 		limit 5
 	</select>
 	<select id="getAuthMainInfoByDistrictCodeName"
-		resultMap="authInstMainInfoEntityList"
+		resultMap="detailMap"
 		parameterType="java.lang.String">
 		<include refid="selectSql"></include>
 		and t1.districtCodeName like
@@ -129,9 +123,8 @@
 		order by t1.id
 		limit 5
 	</select>
-	<insert id="insert"
-		parameterType="com.check.auth.g3.core.checkauth.entity.AuthInstMainInfoEntity">
-		insert into tbl_auth_inst_main_info
+	<insert id="insert" parameterType="com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity">
+		insert into tbl_auth_inst_detail
 		(id,address,busiScope,busiScopeName,businessNumber,cccBusinessScope,contactPeroson,districtCode,districtCodeName,email,exchangeDate,fax,instCode,instName,instStatus,instType,oldInstCode,orgCode,post,principal,principalRegNum,principalTypeName,ratifyDate,recordScope,recordTs,regCapital,regCapitalType,remarks,tel,validityDate,website,zdjgBm,zdjgName)
 		values(#{id},#{address},#{busiScope},#{busiScopeName},#{businessNumber},#{cccBusinessScope},#{contactPeroson},#{districtCode},#{districtCodeName},#{email},#{exchangeDate},#{fax},#{instCode},#{instName},#{instStatus},#{instType},#{oldInstCode},#{orgCode},#{post},#{principal},#{principalRegNum},#{principalTypeName},#{ratifyDate},#{recordScope},#{recordTs},#{regCapital},#{regCapitalType},#{remarks},#{tel},#{validityDate},#{website},#{zdjgBm},#{zdjgName})
 	</insert>

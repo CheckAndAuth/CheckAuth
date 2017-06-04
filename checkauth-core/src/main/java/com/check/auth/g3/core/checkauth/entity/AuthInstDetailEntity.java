@@ -1,6 +1,6 @@
 package com.check.auth.g3.core.checkauth.entity;
 
-public class AuthInstMainInfoEntity {
+public class AuthInstDetailEntity extends AuthInstEntity {
 	private String address;//北京市丰台区南四环西路188号9区
 	private String busiScope;//认证类别代码
 	private String busiScopeName;//认证类别及认证领域

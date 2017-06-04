@@ -8,7 +8,7 @@
         <property name="mapperInterface" value="com.check.auth.g3.core.checkauth.dao.AuthInstMapper"/>
     </bean>
     <bean id="authInstMainInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.check.auth.g3.core.checkauth.dao.AuthInstMainInfoMapper"/>
+        <property name="mapperInterface" value="com.check.auth.g3.core.checkauth.dao.AuthInstDetailMapper"/>
     </bean>
 
 </beans>

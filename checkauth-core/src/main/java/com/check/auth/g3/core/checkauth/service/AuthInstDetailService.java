@@ -2,6 +2,7 @@ package com.check.auth.g3.core.checkauth.service;
 
 
 import com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity;
+import com.check.auth.g3.core.checkauth.entity.AuthInstDetailTempEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,10 @@ public interface AuthInstDetailService {
      * @desc 关键词查询
      */
     public List<AuthInstDetailEntity> selectDetailListByHot(Map<String, String> map);
-
-
+    /**
+     * @desc 根据instCode获取明细信息
+     * @param instCode
+     * @return
+     */
+    public AuthInstDetailTempEntity queryInstDetailByInstCode(String instCode);
 }

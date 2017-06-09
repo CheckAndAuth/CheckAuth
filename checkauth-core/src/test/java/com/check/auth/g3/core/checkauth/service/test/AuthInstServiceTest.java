@@ -15,7 +15,8 @@ public class AuthInstServiceTest {
 	AuthInstService authInstService;
 	
 	@Test
-	public void test() {
-		System.out.println(authInstService.selectAuthInstByInstCode("CNCA-R-2002-001"));
+	public void testSelectAuthInstByInstCode() {
+//		System.out.println(authInstService.selectAuthInstByInstCode("CNCA-R-2002-001"));
+		System.out.println(authInstService.selectAuthInstByContent("北京", "1"));
 	}
 }

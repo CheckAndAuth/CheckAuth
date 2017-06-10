@@ -12,7 +12,7 @@ public interface AuthInstService {
     
     public AuthInstEntity selectAuthInstByInstCode(String instCode);
 
-    public PageDTO<AuthInstEntity>  selectListByPage(Map<String,Object> map,int pageNum, int pageSize);
+    public PageDTO<AuthInstEntity>  selectListByPage(Map<String, Object> queryMap);
 
     public List<AuthInstEntity> selectAuthInstByContent(String content, String flag);
 

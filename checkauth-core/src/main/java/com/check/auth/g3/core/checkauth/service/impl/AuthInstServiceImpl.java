@@ -29,6 +29,7 @@ public class AuthInstServiceImpl implements AuthInstService {
 		return authInstMapper.selectAuthInstByInstCode(instCode);
 	}
 
+
     @Override
     public PageDTO<AuthInstEntity> selectListByPage(Map<String,Object> queryMap) {
         int pageNum= (Integer) queryMap.get("pageNum");

@@ -24,10 +24,24 @@ public interface AuthInstMapper {
     /**
      * 根据查询条件获取机构认证数量
      */
-	public Long getCountByMap(Map<String,Object> map);
+	public Long selectCountByMap(Map<String,Object> map);
 
 
+    /**
+     * 根据查询条件获取机构认证数量
+     */
     public List<AuthInstEntity> selectAuthInstByMap(Map<String,Object> queryMap);
+
+    /**
+     * 根据模糊查询条件获取机构认证数量
+     */
+    public Long selectCountByFuzzyMap(Map<String, Object> map);
+
+    /**
+     * 模糊查询
+     * 按instName、busiScopeName、districtCodeName模糊查询
+     */
+    public List<AuthInstEntity> selectAuthInstByFuzzyMap(Map<String,Object> map);
 
 
 }

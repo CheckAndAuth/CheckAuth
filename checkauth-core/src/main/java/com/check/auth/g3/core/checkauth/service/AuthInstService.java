@@ -11,6 +11,6 @@ public interface AuthInstService {
     
     public AuthInstEntity selectAuthInstByInstCode(String instCode);
 
-    public PageDTO<AuthInstEntity>  selectListByPage(Map<String,Object> map,int pageNum, int pageSize);
+    public PageDTO<AuthInstEntity>  selectListByPage(Map<String,Object> map);
 
 }

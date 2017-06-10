@@ -7,7 +7,6 @@ import com.check.auth.g3.facade.checkauth.facade.dto.PageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,13 +27,29 @@ public class AuthInstServiceImpl implements AuthInstService {
 	}
 
     @Override
-    public PageDTO<AuthInstEntity> selectListByPage(Map<String,Object> queryMap,int pageNum,int pageSize) {
-        Long count= authInstMapper.getCountByMap(queryMap);
+    public PageDTO<AuthInstEntity> selectListByPage(Map<String,Object> queryMap) {
+        int pageNum= (Integer) queryMap.get("pageNum");
+        int pageSize=(Integer) queryMap.get("pageSize");
+        long count=0;
+        List<AuthInstEntity> authList=null;
+        if(queryMap.containsKey("fuzzy")){
+            count = authInstMapper.selectCountByFuzzyMap(queryMap);
+        }else{
+            count = authInstMapper.selectCountByMap(queryMap);
+        }
         PageDTO<AuthInstEntity> page = new PageDTO<AuthInstEntity>(count, pageNum, pageSize);
         queryMap.put("offset", page.getOffset());
         queryMap.put("limit", page.getPageSize());
-        List<AuthInstEntity> authList=authInstMapper.selectAuthInstByMap(queryMap);
+
+        if(queryMap.containsKey("fuzzy")){
+            authList = authInstMapper.selectAuthInstByFuzzyMap(queryMap);
+        }else{
+            authList = authInstMapper.selectAuthInstByMap(queryMap);
+
+        }
         page.setPageList(authList);
         return page;
     }
+
+
 }

@@ -164,8 +164,14 @@
 			t1.id,
 			t1.inst_code,
 			t1.inst_name,
-			t1.inst_status,
-			t1.inst_type,
+			case t1.inst_status
+				when '01' then '有效'
+				else '无效' end as inst_status,
+			case t1.inst_type 
+				when '01' then '主机构'
+				when '02' then '子公司'
+				when '03' then '分公司'
+				else '办事机构' end as inst_type,
 			t1.principal,
 			t1.ratify_date,
 			t1.validity_date,

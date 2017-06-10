@@ -4,9 +4,12 @@ import com.check.auth.g3.core.checkauth.dao.AuthInstMapper;
 import com.check.auth.g3.core.checkauth.entity.AuthInstEntity;
 import com.check.auth.g3.core.checkauth.service.AuthInstService;
 import com.check.auth.g3.facade.checkauth.facade.dto.PageDTO;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,5 +54,20 @@ public class AuthInstServiceImpl implements AuthInstService {
         return page;
     }
 
-
+	@Override
+	public List<AuthInstEntity> selectAuthInstByContent(String content, String flag) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (StringUtils.isNotBlank(flag)) {
+			if ("1".equals(flag)) {
+				map.put("inst_name", content);
+			}else if ("2".equals(flag)) {
+				map.put("busi_scope_name", content);
+			}else if ("3".equals(flag)) {
+				map.put("district_code_name", content);
+			}else {
+				map.put("inst_type", content);
+			}
+		}
+		return authInstMapper.selectAuthInstByMap(map);
+	}
 }

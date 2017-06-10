@@ -32,12 +32,21 @@
     <select id="selectAuthInstByInstCode" resultMap="authInstMap" parameterType="java.lang.String">
         SELECT <include refid="allColumns"/> FROM tbl_auth_Inst
         WHERE inst_code=#{instCode}
-</select>
+	</select>
 
-<insert id="insertAuthInst" parameterType="com.check.auth.g3.core.checkauth.entity.AuthInstEntity">
+	<insert id="insertAuthInst" parameterType="com.check.auth.g3.core.checkauth.entity.AuthInstEntity">
     insert into tbl_auth_Inst
     (id,inst_type,inst_type_order,ratify_date_order,main_inst_id,inst_code,inst_name,inst_status,address,district_code,district_code_name,principal,ratify_date,validity_date,contact_person,tel,cccBm,cccName)
     values(#{id},#{instType},#{instTypeOrder},#{ratifyDateOrder},#{mainInstId},#{instCode},#{instName},#{instStatus},#{address},#{districtCode},#{districtCodeName},#{principal},#{ratifyDate},#{validityDate},#{contactPeroson},#{tel},#{cccBm},#{cccName})
      </insert>
+     
+     <select id="selectAuthInstByMap" resultMap="authInstMap" parameterType="java.util.Map">
+     	SELECT <include refid="allColumns"/> FROM tbl_auth_Inst where 1=1
+     	<if test="inst_name!='' and inst_name != null"> and inst_name like CONCAT('%',#{inst_name},'%')</if>
+     	<!-- <if test="busi_scope_name!=''"> and busi_scope_name like CONCAT('%',#{busi_scope_name},'%')</if> -->
+     	<if test="district_code_name!='' and district_code_name!=null"> and district_code_name like CONCAT('%',#{district_code_name},'%')</if>
+     	<if test="inst_type!='' and inst_type!=null"> and inst_type like CONCAT('%',#{inst_type},'%')</if>
+     </select>
+     
 </mapper>
 

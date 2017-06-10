@@ -128,5 +128,135 @@
 		(id,address,busiScope,busiScopeName,businessNumber,cccBusinessScope,contactPeroson,districtCode,districtCodeName,email,exchangeDate,fax,instCode,instName,instStatus,instType,oldInstCode,orgCode,post,principal,principalRegNum,principalTypeName,ratifyDate,recordScope,recordTs,regCapital,regCapitalType,remarks,tel,validityDate,website,zdjgBm,zdjgName)
 		values(#{id},#{address},#{busiScope},#{busiScopeName},#{businessNumber},#{cccBusinessScope},#{contactPeroson},#{districtCode},#{districtCodeName},#{email},#{exchangeDate},#{fax},#{instCode},#{instName},#{instStatus},#{instType},#{oldInstCode},#{orgCode},#{post},#{principal},#{principalRegNum},#{principalTypeName},#{ratifyDate},#{recordScope},#{recordTs},#{regCapital},#{regCapitalType},#{remarks},#{tel},#{validityDate},#{website},#{zdjgBm},#{zdjgName})
 	</insert>
+	<resultMap type="com.check.auth.g3.core.checkauth.entity.AuthInstDetailTempEntity" id="authDetailTempMap">
+		<result property="id" column="id"/>
+		<result property="instCode" column="inst_code"/>
+		<result property="instName" column="inst_name"/>
+		<result property="instStatus" column="inst_status"/>
+		<result property="instType" column="inst_type"/>
+		<result property="principal" column="principal"/>
+		<result property="ratifyDate" column="ratify_date"/>
+		<result property="validatyDate" column="validity_date"/>
+		<result property="contactPerson" column="contact_person"/>
+		<result property="tel" column="tel"/>
+		<result property="address" column="address"/>
+		<result property="districtCode" column="district_code"/>
+		<result property="districtCodeName" column="district_code_name"/>
+		<result property="cccBm" column="cccBm"/>
+		<result property="fax" column="fax"/>
+		<result property="email" column="email"/>
+		<result property="post" column="post"/>
+		<result property="principalRegNum" column="principal_reg_num"/>
+		<result property="principalRegName" column="principal_type_name"/>
+		<result property="regCapital" column="reg_capital"/>
+		<result property="webSite" column="website"/>
+		<result property="isCCCInst" column="is_ccc_inst"/>
+		<result property="cnasRec" column="cnas_rec"/>
+		<result property="outSideRec" column="outside_rec"/>
+		<result property="highNewTecRec" column="high_new_tec_rec"/>
+		<result property="org_code" column="org_code"/>
+		<result property="entHode" column="ent_hold"/>
+		<result property="detailId" column="detail_id"/>
+	</resultMap>
+	
+	<select id="selectInstDetailByInstCode" resultMap="authDetailTempMap" parameterType="java.lang.String">
+		SELECT
+			t1.id,
+			t1.inst_code,
+			t1.inst_name,
+			case t1.inst_status
+				when '01' then '有效'
+				else '无效' end as inst_status,
+			case t1.inst_type 
+				when '01' then '主机构'
+				when '02' then '子公司'
+				when '03' then '分公司'
+				else '办事机构' end as inst_type,
+			t1.principal,
+			t1.ratify_date,
+			t1.validity_date,
+			t1.contact_person,
+			t1.tel,
+			t1.address,
+			t1.district_code,
+			t1.district_code_name,
+			t1.cccBm,
+			t2.fax,
+			t2.email,
+			t2.post,
+			t2.principal_reg_num,
+			t2.principal_type_name,
+			t2.reg_capital,
+			t2.website,
+			t2.is_ccc_inst,
+			t2.cnas_rec,
+			t2.outside_rec,
+			t2.high_new_tec_rec,
+			t2.org_code,
+			t2.ent_hold,
+			t2.id AS detail_id
+		FROM
+			tbl_auth_inst t1,
+			tbl_auth_inst_detail t2
+		WHERE
+			1 = 1
+		AND t1.inst_code = t2.inst_code
+		AND t1.inst_code = #{instCode}
+	</select>
+	
+	<resultMap type="com.check.auth.g3.core.checkauth.entity.AuthTypeAreaTempEntity" id="authTypeArea">
+		<result property="typeCode" column="type_code"/>
+		<result property="typeName" column="type_name"/>
+		<result property="authAreaCode" column="auth_area_code"/>
+		<result property="authAreaName" column="auth_area_name"/>
+	</resultMap>
+	
+	<select id="selectAuthTypeAreaById" parameterType="int" resultMap="authTypeArea">
+		SELECT
+			tb3.type_code,
+			tb3.type_name,
+			tb2.auth_area_code,
+			tb2.auth_area_name
+		FROM
+			tbl_auth_inst_busi_stat tb1,
+			tbl_auth_area tb2,
+			tbl_auth_type tb3
+		WHERE
+			tb1.auth_area_id = tb2.id
+		AND tb2.auth_type_code = tb3.type_code
+		AND tb1.auth_inst_detail_id = #{id}
+	</select>
+	
+	<resultMap type="com.check.auth.g3.core.checkauth.entity.AuthTypeStatTempEntity" id="authTypeStat">
+		<result property="typeName"  column="type_name"/>
+		<result property="effCerNum" column="auth_num"/>
+		<result property="authPerNum" column="total_auth_person"/>
+	</resultMap>
+	<select id="selectAuthTypeStatById" parameterType="int" resultMap="authTypeStat">
+		SELECT
+		tb4.type_name,
+		SUM(tb4.auth_num) as auth_num,
+		SUM(tb4.total_auth_person) as total_auth_person
+		FROM
+		(
+			SELECT
+				tb3.type_code,
+				tb3.type_name,
+				tb2.auth_area_code,
+				tb2.auth_area_name,
+				tb1.auth_num,
+				tb1.full_time_num + tb1.part_time_num AS total_auth_person
+			FROM
+				tbl_auth_inst_busi_stat tb1,
+				tbl_auth_area tb2,
+				tbl_auth_type tb3
+			WHERE
+				tb1.auth_area_id = tb2.id
+			AND tb2.auth_type_code = tb3.type_code
+			AND tb1.auth_inst_detail_id = #{id}
+		) tb4
+	GROUP BY
+		tb4.type_name
+	</select>
 </mapper>
 

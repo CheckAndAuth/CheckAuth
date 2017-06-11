@@ -2,7 +2,7 @@ package com.check.auth.g3.core.checkauth.service;
 
 
 import com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity;
-import com.check.auth.g3.core.checkauth.entity.AuthInstDetailTempEntity;
+import com.check.auth.g3.facade.checkauth.facade.dto.PageDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -21,21 +21,19 @@ public interface AuthInstDetailService {
     /**
      * @desc 根据机构码查询
      */
-    public AuthInstDetailEntity selectInstDetailByInstCode(String instCode);
+    public AuthInstDetailEntity queryInstDetailByInstCode(String instCode);
 
     /**
      * @desc 根据模糊查询
      */
-    public List<AuthInstDetailEntity> selectDetailListByFuzzy(Map<String, String> map);
+    public List<AuthInstDetailEntity> selectDetailListByFuzzy(Map<String,Object> map);
 
     /**
      * @desc 关键词查询
      */
     public List<AuthInstDetailEntity> selectDetailListByHot(Map<String, String> map);
-    /**
-     * @desc 根据instCode获取明细信息
-     * @param instCode
-     * @return
-     */
-    public AuthInstDetailTempEntity queryInstDetailByInstCode(String instCode);
+
+
+    public PageDTO<AuthInstDetailEntity> selectListByPage(Map<String, Object> queryMap);
+
 }

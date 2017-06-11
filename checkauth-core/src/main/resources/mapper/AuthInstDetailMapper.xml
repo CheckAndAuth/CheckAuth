@@ -5,258 +5,171 @@
 <mapper namespace="com.check.auth.g3.core.checkauth.dao.AuthInstDetailMapper">
 
 	<resultMap id="detailMap" type="com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity">
-		<result property="id               " column="id               " />
-		<result property="address          " column="address          " />
-		<result property="busiScope        " column="busiScope        " />
-		<result property="busiScopeName    " column="busiScopeName    " />
-		<result property="businessNumber   " column="businessNumber   " />
-		<result property="cccBusinessScope " column="cccBusinessScope " />
-		<result property="contactPeroson   " column="contactPeroson   " />
-		<result property="districtCode     " column="districtCode     " />
-		<result property="districtCodeName " column="districtCodeName " />
-		<result property="email            " column="email            " />
-		<result property="exchangeDate     " column="exchangeDate     " />
-		<result property="fax              " column="fax              " />
-		<result property="instCode         " column="instCode         " />
-		<result property="instName         " column="instName         " />
-		<result property="instStatus       " column="instStatus       " />
-		<result property="instType         " column="instType         " />
-		<result property="oldInstCode      " column="oldInstCode      " />
-		<result property="orgCode          " column="orgCode          " />
-		<result property="post             " column="post             " />
-		<result property="principal        " column="principal        " />
-		<result property="principalRegNum  " column="principalRegNum  " />
-		<result property="principalTypeName" column="principalTypeName" />
-		<result property="ratifyDate       " column="ratifyDate       " />
-		<result property="recordScope      " column="recordScope      " />
-		<result property="recordTs         " column="recordTs         " />
-		<result property="regCapital       " column="regCapital       " />
-		<result property="regCapitalType   " column="regCapitalType   " />
-		<result property="remarks          " column="remarks          " />
-		<result property="tel              " column="tel              " />
-		<result property="validityDate     " column="validityDate     " />
-		<result property="website          " column="website          " />
-		<result property="zdjgBm           " column="zdjgBm           " />
-		<result property="zdjgName         " column="zdjgName         " />
-		<result property="orgType          " column="orgType          " />
-		<result property="CNASRecognization" column="CNASRecognization" />
-		<result property="outSideRecognization" column="outSideRecognization" />
-		<result property="highNewTecRec" column="highNewTecRec" />
-
+		<result property="id"                column="id" />
+		<result property="address"           column="address" />
+		<result property="busiScope"         column="busi_scope" />
+		<result property="busiScopeName"     column="busi_scope_name" />
+		<result property="businessNumber"    column="business_number" />
+		<result property="cccBusinessScope"  column="ccc_business_scope " />
+		<result property="contactPerson"     column="contact_person" />
+		<result property="districtCode"      column="district_code" />
+		<result property="districtCodeName"  column="district_code_name" />
+		<result property="email"             column="email" />
+		<result property="exchangeDate"      column="exchange_date" />
+		<result property="fax"               column="fax" />
+		<result property="instCode"          column="inst_code" />
+		<result property="instName"          column="inst_name" />
+		<result property="instStatus"        column="inst_status" />
+		<result property="instType"          column="inst_type" />
+		<result property="oldInstCode"       column="old_inst_code" />
+		<result property="orgCode"           column="org_code" />
+		<result property="post"              column="post" />
+		<result property="principal"         column="principal" />
+		<result property="principalRegNum"   column="principal_reg_num" />
+		<result property="principalTypeName" column="principal_type_name" />
+		<result property="ratifyDate"        column="ratify_date" />
+		<result property="recordScope"       column="record_scope" />
+		<result property="recordTs"          column="record_ts" />
+		<result property="regCapital"        column="reg_capital" />
+		<result property="regCapitalType"    column="reg_capital_type" />
+		<result property="remarks"           column="remarks" />
+		<result property="tel"               column="tel" />
+		<result property="validityDate"      column="validity_date" />
+		<result property="website"           column="website" />
+		<result property="zdjgBm"            column="zdjg_bm" />
+		<result property="zdjgName"          column="zdjg_name" />
+		<result property="orgType"           column="org_type" />
+		<result property="cnasRec"           column="cnas_rec" />
+		<result property="outsideRec"        column="outside_rec" />
+		<result property="highNewTecRec"        column="high_new_tec_rec" />
+        <result property="isCCInst"             column="is_cc_inst"/>
+        <result property="entHode"              column="ent_hode"/>
+        <result property="authYear" column="auth_year"/>
+        <result property="authCount" column="auth_count"/>
 	</resultMap>
-	<sql id="selectSql">
-		t1.id,
-		t1.address,
-		t1.busiScope,
-		t1.busiScopeName,
-		t1.businessNumber,
-		t1.cccBusinessScope,
-		t1.contactPeroson,
-		t1.districtCode,
-		t1.districtCodeName,
-		t1.email,
-		t1.exchangeDate,
-		t1.fax,
-		t1.instCode,
-		t1.instName,
-		t1.instStatus,
-		t1.instType,
-		t1.oldInstCode,
-		t1.orgCode,
-		t1.post,
-		t1.principal,
-		t1.principalRegNum,
-		t1.principalTypeName,
-		t1.ratifyDate,
-		t1.recordScope,
-		t1.recordTs,
-		t1.regCapital,
-		t1.regCapitalType,
-		t1.remarks,
-		t1.tel,
-		t1.validityDate,
-		t1.website,
-		t1.zdjgBm,
-		t1.zdjgName,
-		t2.orgType,
-		t2.CNASRecognization,
-		t2.outSideRecognization,
-		t2.highNewTecRec
-		from tbl_auth_inst_main_info
-		t1,tbl_inst_cert_auth t2
-		where t1.orgCode = t2.orgId
 
+	<sql id="allColumns">
+		t1.id id,
+		t1.busi_scope busi_scope,
+		t1.busi_scope_name busi_scope_name,
+		t1.business_number business_number,
+		t1.ccc_business_scope ccc_business_scope,
+		t1.email email,
+		t1.exchange_date exchange_date,
+		t1.fax fax,
+		t1.old_inst_code old_inst_code,
+		t1.org_code org_code,
+		t1.post post,
+		t1.principal_reg_num principal_reg_num,
+		t1.principal_type_name principal_type_name,
+		t1.record_scope record_scope,
+		t1.record_ts record_ts,
+		t1.reg_capital reg_capital,
+		t1.reg_capital_type reg_capital_type,
+		t1.website website,
+		t1.zdjg_bm zdjg_bm,
+		t1.zdjg_name zdjg_name,
+		t1.cnas_rec cnas_rec,
+		t1.outside_rec outside_rec,
+		t1.high_new_tec_rec high_new_tec_rec,
+		t2.address address,
+		t2.contact_person contact_person,
+        t2.district_code district_code,
+		t2.district_code_name district_code_name,
+		t2.inst_code inst_code,
+		t2.inst_name inst_name,
+		t2.inst_status inst_status,
+		t2.inst_type inst_type,
+		t2.tel tel,
+		t2.principal principal,
+		t2.ratify_date ratify_date,
+		t2.validity_date validity_date,
+		t3.auth_year auth_year,
+		t3. auth_count auth_count
 	</sql>
-	<select id="getAuthMainInfoByKeyWord" resultMap="detailMap" parameterType="java.lang.String">
-		<include refid="selectSql"></include>
-		and t1.instName like CONCAT('%',#{keyword},'%')
-		or t1.busiScopeName
-		like CONCAT('%',#{keyword},'%')
-		or t1.districtCodeName like
-		CONCAT('%',#{keyword},'%')
-		ORDER BY t1.id
-		LIMIT 5
-		
-	</select>
-	<select id="getAuthMainInfoByInstName" resultMap="detailMap" parameterType="java.lang.String">
-        select
-		<include refid="selectSql"></include>
-		and t1.instName like CONCAT('%',#{instName},'%')
-		order by t1.id
-		limit 5
-	</select>
-	<select id="getAuthMainInfoByBusiScopeName"
-		resultMap="detailMap"
-		parameterType="java.lang.String">
-		<include refid="selectSql"></include>
-		and t1.busiScopeName
-		like CONCAT('%',#{busiScopeName},'%')
-		order by t1.id
-		limit 5
-	</select>
-	<select id="getAuthMainInfoByDistrictCodeName"
-		resultMap="detailMap"
-		parameterType="java.lang.String">
-		<include refid="selectSql"></include>
-		and t1.districtCodeName like
-		CONCAT('%',#{keyword},'%')
-		order by t1.id
-		limit 5
-	</select>
+
 	<insert id="insert" parameterType="com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity">
 		insert into tbl_auth_inst_detail
 		(id,address,busiScope,busiScopeName,businessNumber,cccBusinessScope,contactPeroson,districtCode,districtCodeName,email,exchangeDate,fax,instCode,instName,instStatus,instType,oldInstCode,orgCode,post,principal,principalRegNum,principalTypeName,ratifyDate,recordScope,recordTs,regCapital,regCapitalType,remarks,tel,validityDate,website,zdjgBm,zdjgName)
 		values(#{id},#{address},#{busiScope},#{busiScopeName},#{businessNumber},#{cccBusinessScope},#{contactPeroson},#{districtCode},#{districtCodeName},#{email},#{exchangeDate},#{fax},#{instCode},#{instName},#{instStatus},#{instType},#{oldInstCode},#{orgCode},#{post},#{principal},#{principalRegNum},#{principalTypeName},#{ratifyDate},#{recordScope},#{recordTs},#{regCapital},#{regCapitalType},#{remarks},#{tel},#{validityDate},#{website},#{zdjgBm},#{zdjgName})
 	</insert>
-	<resultMap type="com.check.auth.g3.core.checkauth.entity.AuthInstDetailTempEntity" id="authDetailTempMap">
-		<result property="id" column="id"/>
-		<result property="instCode" column="inst_code"/>
-		<result property="instName" column="inst_name"/>
-		<result property="instStatus" column="inst_status"/>
-		<result property="instType" column="inst_type"/>
-		<result property="principal" column="principal"/>
-		<result property="ratifyDate" column="ratify_date"/>
-		<result property="validatyDate" column="validity_date"/>
-		<result property="contactPerson" column="contact_person"/>
-		<result property="tel" column="tel"/>
-		<result property="address" column="address"/>
-		<result property="districtCode" column="district_code"/>
-		<result property="districtCodeName" column="district_code_name"/>
-		<result property="cccBm" column="cccBm"/>
-		<result property="fax" column="fax"/>
-		<result property="email" column="email"/>
-		<result property="post" column="post"/>
-		<result property="principalRegNum" column="principal_reg_num"/>
-		<result property="principalRegName" column="principal_type_name"/>
-		<result property="regCapital" column="reg_capital"/>
-		<result property="webSite" column="website"/>
-		<result property="isCCCInst" column="is_ccc_inst"/>
-		<result property="cnasRec" column="cnas_rec"/>
-		<result property="outSideRec" column="outside_rec"/>
-		<result property="highNewTecRec" column="high_new_tec_rec"/>
-		<result property="org_code" column="org_code"/>
-		<result property="entHode" column="ent_hold"/>
-		<result property="detailId" column="detail_id"/>
-	</resultMap>
-	
-	<select id="selectInstDetailByInstCode" resultMap="authDetailTempMap" parameterType="java.lang.String">
-		SELECT
-			t1.id,
-			t1.inst_code,
-			t1.inst_name,
-			case t1.inst_status
-				when '01' then '有效'
-				else '无效' end as inst_status,
-			case t1.inst_type 
-				when '01' then '主机构'
-				when '02' then '子公司'
-				when '03' then '分公司'
-				else '办事机构' end as inst_type,
-			t1.principal,
-			t1.ratify_date,
-			t1.validity_date,
-			t1.contact_person,
-			t1.tel,
-			t1.address,
-			t1.district_code,
-			t1.district_code_name,
-			t1.cccBm,
-			t2.fax,
-			t2.email,
-			t2.post,
-			t2.principal_reg_num,
-			t2.principal_type_name,
-			t2.reg_capital,
-			t2.website,
-			t2.is_ccc_inst,
-			t2.cnas_rec,
-			t2.outside_rec,
-			t2.high_new_tec_rec,
-			t2.org_code,
-			t2.ent_hold,
-			t2.id AS detail_id
-		FROM
-			tbl_auth_inst t1,
-			tbl_auth_inst_detail t2
-		WHERE
-			1 = 1
-		AND t1.inst_code = t2.inst_code
-		AND t1.inst_code = #{instCode}
+
+	<select id="selectDetailByInstCode" resultMap="detailMap" parameterType="java.lang.String">
+        SELECT   <include refid="allColumns"/>
+        from tbl_auth_inst_detail t1
+        left join tbl_auth_inst t2 on t1.inst_code=t2.inst_code
+        left join tbl_auth_statics t3 on t1.id=t3.inst_detail_id
+        left join tbl_auth_inst_type t4 on t2.inst_type=t4.code_type
+		WHERE t1.inst_code=#{instCode}
 	</select>
-	
-	<resultMap type="com.check.auth.g3.core.checkauth.entity.AuthTypeAreaTempEntity" id="authTypeArea">
-		<result property="typeCode" column="type_code"/>
-		<result property="typeName" column="type_name"/>
-		<result property="authAreaCode" column="auth_area_code"/>
-		<result property="authAreaName" column="auth_area_name"/>
-	</resultMap>
-	
-	<select id="selectAuthTypeAreaById" parameterType="int" resultMap="authTypeArea">
-		SELECT
-			tb3.type_code,
-			tb3.type_name,
-			tb2.auth_area_code,
-			tb2.auth_area_name
-		FROM
-			tbl_auth_inst_busi_stat tb1,
-			tbl_auth_area tb2,
-			tbl_auth_type tb3
-		WHERE
-			tb1.auth_area_id = tb2.id
-		AND tb2.auth_type_code = tb3.type_code
-		AND tb1.auth_inst_detail_id = #{id}
-	</select>
-	
-	<resultMap type="com.check.auth.g3.core.checkauth.entity.AuthTypeStatTempEntity" id="authTypeStat">
-		<result property="typeName"  column="type_name"/>
-		<result property="effCerNum" column="auth_num"/>
-		<result property="authPerNum" column="total_auth_person"/>
-	</resultMap>
-	<select id="selectAuthTypeStatById" parameterType="int" resultMap="authTypeStat">
-		SELECT
-		tb4.type_name,
-		SUM(tb4.auth_num) as auth_num,
-		SUM(tb4.total_auth_person) as total_auth_person
-		FROM
-		(
-			SELECT
-				tb3.type_code,
-				tb3.type_name,
-				tb2.auth_area_code,
-				tb2.auth_area_name,
-				tb1.auth_num,
-				tb1.full_time_num + tb1.part_time_num AS total_auth_person
-			FROM
-				tbl_auth_inst_busi_stat tb1,
-				tbl_auth_area tb2,
-				tbl_auth_type tb3
-			WHERE
-				tb1.auth_area_id = tb2.id
-			AND tb2.auth_type_code = tb3.type_code
-			AND tb1.auth_inst_detail_id = #{id}
-		) tb4
-	GROUP BY
-		tb4.type_name
-	</select>
+
+    <select id="selectDetailByInstName" resultMap="detailMap" parameterType="java.lang.String">
+        SELECT   <include refid="allColumns"/>
+        from tbl_auth_inst_detail t1
+        left join tbl_auth_inst t2 on t1.inst_code=t2.inst_code
+        left join tbl_auth_statics t3 on t1.id=t3.inst_detail_id
+        left join tbl_auth_inst_type t4 on t2.inst_type=t4.code_type
+        where t1.instName like CONCAT('%',#{instName},'%')
+    </select>
+
+    <select id="selectCountByFuzzyMap" resultType="long" parameterType="java.util.Map">
+        SELECT count(1)
+        from tbl_auth_inst_detail t1
+        left join tbl_auth_inst t2 on t1.inst_code=t2.inst_code
+        left join tbl_auth_statics t3 on t1.id=t3.inst_detail_id
+        left join tbl_auth_inst_type t4 on t2.inst_type=t4.code_type
+        where 1=1
+        <choose>
+            <when test="instName!='' and instName != null">
+                and t1.inst_name like CONCAT('%',#{instName},'%')
+            </when>
+            <when test="districtCodeName!='' and districtCodeName!=null">
+                and t1.district_code_name like CONCAT('%',#{districtCodeName},'%')
+            </when>
+            <when test="instType!='' and instType!=null">
+                and t2.inst_type like CONCAT('%',#{instType},'%')
+            </when>
+            <otherwise>
+                and (t1.inst_name like CONCAT('%',#{instName},'%')
+                or t1.district_code_name like CONCAT('%',#{districtCodeName},'%')
+                or t2.inst_type like CONCAT('%',#{instType},'%'))
+            </otherwise>
+        </choose>
+/*
+        and t3.auth_year='2016'
+*/
+    </select>
+
+
+    <select id="selectDetailListByFuzzyMap" resultMap="detailMap" parameterType="java.util.Map">
+        SELECT   <include refid="allColumns"/>
+        from tbl_auth_inst_detail t1
+        left join tbl_auth_inst t2 on t1.inst_code=t2.inst_code
+        left join tbl_auth_statics t3 on t1.id=t3.inst_detail_id
+        left join tbl_auth_inst_type t4 on t2.inst_type=t4.code_type
+        where 1=1
+        <choose>
+            <when test="instName!='' and instName != null">
+                and t1.inst_name like CONCAT('%',#{instName},'%')
+            </when>
+            <when test="districtCodeName!='' and districtCodeName!=null">
+                and t1.district_code_name like CONCAT('%',#{districtCodeName},'%')
+            </when>
+            <when test="instType!='' and instType!=null">
+                and t2.inst_type like CONCAT('%',#{instType},'%')
+            </when>
+            <otherwise>
+                 and ( t1.inst_name like CONCAT('%',#{instName},'%')
+                 or t1.district_code_name like CONCAT('%',#{districtCodeName},'%')
+                 or t2.inst_type like CONCAT('%',#{instType},'%'))
+            </otherwise>
+        </choose>
+/*
+        and t3.auth_year='2016'
+*/
+        order by t1.id desc
+        LIMIT #{offset}, #{limit}
+    </select>
+
 </mapper>
 

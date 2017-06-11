@@ -39,14 +39,94 @@
     (id,inst_type,inst_type_order,ratify_date_order,main_inst_id,inst_code,inst_name,inst_status,address,district_code,district_code_name,principal,ratify_date,validity_date,contact_person,tel,cccBm,cccName)
     values(#{id},#{instType},#{instTypeOrder},#{ratifyDateOrder},#{mainInstId},#{instCode},#{instName},#{instStatus},#{address},#{districtCode},#{districtCodeName},#{principal},#{ratifyDate},#{validityDate},#{contactPeroson},#{tel},#{cccBm},#{cccName})
      </insert>
-     
+
+    <select id="selectCountByMap" resultType="long" parameterType="java.util.Map">
+        SELECT count(1)
+        FROM tbl_auth_Inst where 1=1
+        <choose>
+            <when test="instName!='' and instName != null">
+                and inst_name like CONCAT('%',#{instName},'%')
+            </when>
+            <when test="districtCodeName!='' and districtCodeName!=null">
+                and district_code_name like CONCAT('%',#{districtCodeName},'%')
+            </when>
+            <when test="instType!='' and instType!=null">
+                and inst_type like CONCAT('%',#{instType},'%')
+            </when>
+            <otherwise>
+                and (inst_name like CONCAT('%',#{instName},'%')
+                or district_code_name like CONCAT('%',#{districtCodeName},'%')
+                or inst_type like CONCAT('%',#{instType},'%'))
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="selectCountByFuzzyMap" resultType="long" parameterType="java.util.Map">
+        SELECT count(1)
+        FROM tbl_auth_Inst where 1=1
+        <choose>
+            <when test="instName!='' and instName != null">
+                and inst_name like CONCAT('%',#{instName},'%')
+            </when>
+            <when test="districtCodeName!='' and districtCodeName!=null">
+                and district_code_name like CONCAT('%',#{districtCodeName},'%')
+            </when>
+            <when test="instType!='' and instType!=null">
+                and inst_type like CONCAT('%',#{instType},'%')
+            </when>
+            <otherwise>
+                and (inst_name like CONCAT('%',#{instName},'%')
+                or district_code_name like CONCAT('%',#{districtCodeName},'%')
+                or inst_type like CONCAT('%',#{instType},'%'))
+            </otherwise>
+        </choose>
+    </select>
+
      <select id="selectAuthInstByMap" resultMap="authInstMap" parameterType="java.util.Map">
-     	SELECT <include refid="allColumns"/> FROM tbl_auth_Inst where 1=1
-     	<if test="inst_name!='' and inst_name != null"> and inst_name like CONCAT('%',#{inst_name},'%')</if>
-     	<!-- <if test="busi_scope_name!=''"> and busi_scope_name like CONCAT('%',#{busi_scope_name},'%')</if> -->
-     	<if test="district_code_name!='' and district_code_name!=null"> and district_code_name like CONCAT('%',#{district_code_name},'%')</if>
-     	<if test="inst_type!='' and inst_type!=null"> and inst_type like CONCAT('%',#{inst_type},'%')</if>
+     	SELECT <include refid="allColumns"/>
+        FROM tbl_auth_Inst where 1=1
+         <choose>
+             <when test="instName!='' and instName != null">
+                 and inst_name like CONCAT('%',#{instName},'%')
+             </when>
+             <when test="districtCodeName!='' and districtCodeName!=null">
+                 and district_code_name like CONCAT('%',#{districtCodeName},'%')
+             </when>
+             <when test="instType!='' and instType!=null">
+                 and inst_type like CONCAT('%',#{instType},'%')
+             </when>
+             <otherwise>
+                 and (inst_name like CONCAT('%',#{instName},'%')
+                 or district_code_name like CONCAT('%',#{districtCodeName},'%')
+                 or inst_type like CONCAT('%',#{instType},'%'))
+             </otherwise>
+         </choose>
+         order by id desc
+         LIMIT #{offset}, #{limit}
      </select>
-     
+
+    <select id="selectAuthInstByFuzzyMap" resultMap="authInstMap" parameterType="java.util.Map">
+        SELECT   <include refid="allColumns"/>
+        FROM tbl_auth_Inst  where 1=1
+        <choose>
+            <when test="instName!='' and instName != null">
+                and inst_name like CONCAT('%',#{instName},'%')
+            </when>
+            <when test="districtCodeName!='' and districtCodeName!=null">
+                and district_code_name like CONCAT('%',#{districtCodeName},'%')
+            </when>
+            <when test="instType!='' and instType!=null">
+                and inst_type like CONCAT('%',#{instType},'%')
+            </when>
+            <otherwise>
+                and (inst_name like CONCAT('%',#{instName},'%')
+                or district_code_name like CONCAT('%',#{districtCodeName},'%')
+                or inst_type like CONCAT('%',#{instType},'%'))
+            </otherwise>
+        </choose>
+        order by id desc
+        LIMIT #{offset}, #{limit}
+
+    </select>
 </mapper>
 

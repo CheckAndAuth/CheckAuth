@@ -22,10 +22,13 @@ public class AuthInstDetailEntity extends AuthInstEntity {
 	private String zdjgName;//中国质量认证中心
 	private String cnasRec;//CNAS认可
 	private String outsideRec;//境外认可
-	private String highnewTecRec;//高新技术认可
+    private String highNewTecRec;//高新技术认可
 	private String orgCode;//统一社会信用代码/组织机构代码
 	private String entHode;//企业控股
-	
+    private String authYear;
+    private int authCount;
+    private AuthInstStaticsEntity authInstStaticsEntity;
+
 	public String getIsCCInst() {
 		return isCCInst;
 	}
@@ -165,13 +168,40 @@ public class AuthInstDetailEntity extends AuthInstEntity {
 	public void setOutsideRec(String outsideRec) {
 		this.outsideRec = outsideRec;
 	}
-	public String getHighnewTecRec() {
-		return highnewTecRec;
-	}
-	public void setHighnewTecRec(String highnewTecRec) {
-		this.highnewTecRec = highnewTecRec;
-	}
-	@Override
+
+    public String getAuthYear() {
+        return authYear;
+    }
+
+    public void setAuthYear(String authYear) {
+        this.authYear = authYear;
+    }
+
+    public int getAuthCount() {
+        return authCount;
+    }
+
+    public void setAuthCount(int authCount) {
+        this.authCount = authCount;
+    }
+
+    public String getHighNewTecRec() {
+        return highNewTecRec;
+    }
+
+    public void setHighNewTecRec(String highNewTecRec) {
+        this.highNewTecRec = highNewTecRec;
+    }
+
+    public AuthInstStaticsEntity getAuthInstStaticsEntity() {
+        return authInstStaticsEntity;
+    }
+
+    public void setAuthInstStaticsEntity(AuthInstStaticsEntity authInstStaticsEntity) {
+        this.authInstStaticsEntity = authInstStaticsEntity;
+    }
+
+    @Override
 	public String toString() {
 		return "AuthInstDetailEntity [busiScope=" + busiScope + ", busiScopeName=" + busiScopeName + ", businessNumber="
 				+ businessNumber + ", cccBusinessScope=" + cccBusinessScope + ", oldInstCode=" + oldInstCode
@@ -180,7 +210,7 @@ public class AuthInstDetailEntity extends AuthInstEntity {
 				+ recordScope + ", recordTs=" + recordTs + ", regCapital=" + regCapital + ", regCapitalType="
 				+ regCapitalType + ", website=" + website + ", isCCInst=" + isCCInst + ", zdjgBm=" + zdjgBm
 				+ ", zdjgName=" + zdjgName + ", cnasRec=" + cnasRec + ", outsideRec=" + outsideRec + ", highnewTecRec="
-				+ highnewTecRec + ", orgCode=" + orgCode + ", entHode=" + entHode + "]";
+				+ highNewTecRec + ", orgCode=" + orgCode + ", entHode=" + entHode + "]";
 	}
 	
 	

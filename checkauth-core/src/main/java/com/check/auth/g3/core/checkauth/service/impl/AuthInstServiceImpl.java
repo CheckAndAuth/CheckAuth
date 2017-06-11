@@ -4,12 +4,9 @@ import com.check.auth.g3.core.checkauth.dao.AuthInstMapper;
 import com.check.auth.g3.core.checkauth.entity.AuthInstEntity;
 import com.check.auth.g3.core.checkauth.service.AuthInstService;
 import com.check.auth.g3.facade.checkauth.facade.dto.PageDTO;
-
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,9 +34,9 @@ public class AuthInstServiceImpl implements AuthInstService {
         long count=0;
         List<AuthInstEntity> authList=null;
         if(queryMap.containsKey("fuzzy")){
-            count = authInstMapper.selectCountByFuzzyMap(queryMap);
+            count=authInstMapper.selectCountByFuzzyMap(queryMap);
         }else{
-            count = authInstMapper.selectCountByMap(queryMap);
+            count=authInstMapper.selectCountByMap(queryMap);
         }
         PageDTO<AuthInstEntity> page = new PageDTO<AuthInstEntity>(count, pageNum, pageSize);
         queryMap.put("offset", page.getOffset());
@@ -55,7 +52,7 @@ public class AuthInstServiceImpl implements AuthInstService {
         return page;
     }
 
-	@Override
+	/*@Override
 	public List<AuthInstEntity> selectAuthInstByContent(String content, String flag) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (StringUtils.isNotBlank(flag)) {
@@ -70,5 +67,5 @@ public class AuthInstServiceImpl implements AuthInstService {
 			}
 		}
 		return authInstMapper.selectAuthInstByMap(map);
-	}
+	}*/
 }

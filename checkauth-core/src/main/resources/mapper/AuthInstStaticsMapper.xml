@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.check.auth.g3.core.checkauth.dao.AuthStaticsMapper">
+
+    <resultMap id="authInstStaticsMap" type="com.check.auth.g3.core.checkauth.entity.AuthInstStaticsEntity">
+        <result property="id"                 column="id"                  jdbcType="INTEGER"/>
+        <result property="instDetailId"       column="inst_detail_id"      jdbcType="VARCHAR"/>
+        <result property="authYear"           column="auth_year"           jdbcType="VARCHAR"/>
+        <result property="authCount"          column="auth_count"          jdbcType="INTEGER"/>
+        <result property="authPersonCount"    column="auth_person_count"   jdbcType="INTEGER"/>
+
+    </resultMap>
+    <sql id="allColumns">
+         id,inst_detail_id,auth_year,auth_count,auth_person_count
+    </sql>
+
+
+    <select id="selectStaticsByInstDetailId" resultMap="authInstStaticsMap" parameterType="int">
+        SELECT <include refid="allColumns"/>
+        FROM tbl_auth_statics
+        WHERE inst_detail_id=#{instDetailId}
+	</select>
+
+     <select id="getGroupStaticsByInstDetailId" resultType="java.util.HashMap" parameterType="int">
+        select t1.auth_type_name typeName,sum(t1.auth_num) authNum,SUM(t1.full_time_num+t1.part_time_num) as personNum
+        from tbl_auth_statics t
+        left join tbl_auth_statics_detail t1 on t.id=t1.auth_statics_detail_id
+        WHERE t.inst_detail_id=#{instDetailId}
+        and t.auth_year='2016'
+        group by auth_type_name
+     </select>
+     
+</mapper>
+

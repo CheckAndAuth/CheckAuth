@@ -1,11 +1,7 @@
 package com.check.auth.g3.core.checkauth.dao;
 
 
-import com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity;
-import com.check.auth.g3.core.checkauth.entity.AuthInstDetailTempEntity;
-import com.check.auth.g3.core.checkauth.entity.AuthTypeAreaTempEntity;
-import com.check.auth.g3.core.checkauth.entity.AuthTypeStatTempEntity;
-
+import com.check.auth.g3.core.checkauth.entity.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,29 +26,21 @@ public interface AuthInstDetailMapper {
     public AuthInstDetailEntity selectDetailByInstCode(String instCode);
 
 
+    /**
+     * 机构名称
+     */
+    public AuthInstDetailEntity selectDetailByInstName(String instName);
 
-	/**
-	 * 模糊查询
-	 * 按instName、busiScopeName、districtCodeName模糊查询
-	 */
-	public List<AuthInstDetailEntity>  selectDetailListByFuzzy(Map<String,String> map);
-	
-	/**
-	 * @desc 根据机构批准号查询明细表信息
-	 * @param instCode
-	 * @return
-	 */
-	public AuthInstDetailTempEntity selectInstDetailByInstCode(String instCode);
-	/**
-	 * @desc 根据明细表id查询认证类型统计
-	 * @param id
-	 * @return
-	 */
-	public List<AuthTypeStatTempEntity> selectAuthTypeStatById(int id);
-	
-	/**
-	 * @desc 根据明细表id获取认证类别及认证领域
-	 * @param id
-	 */
-	public List<AuthTypeAreaTempEntity> selectAuthTypeAreaById(int id);
+
+    /**
+     * 根据模糊查询条件获取机构认证数量
+     */
+    public Long selectCountByFuzzyMap(Map<String, Object> map);
+
+    /**
+     * 模糊查询
+     * 按instName、busiScopeName、districtCodeName模糊查询
+     */
+    public List<AuthInstDetailEntity> selectDetailListByFuzzyMap(Map<String,Object> map);
+
 }

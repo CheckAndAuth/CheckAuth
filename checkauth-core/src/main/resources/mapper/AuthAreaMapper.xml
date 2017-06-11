@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.check.auth.g3.core.checkauth.dao.AuthInstDetailMapper">
+
+    <resultMap type="com.check.auth.g3.core.checkauth.entity.AuthAreaEntity" id="authTypeArea">
+        <result property="id"           column="id"/>
+        <result property="authTypeCode" column="auth_type_code"/>
+        <result property="authTypeName" column="auth_type_name"/>
+        <result property="authAreaCode" column="auth_area_code"/>
+        <result property="authAreaName" column="auth_area_name"/>
+    </resultMap>
+
+    <select id="selectAuthTypeAreaById" parameterType="int" resultMap="authTypeArea">
+        SELECT
+        tb3.type_code,
+        tb3.type_name,
+        tb2.auth_area_code,
+        tb2.auth_area_name
+        FROM
+        tbl_auth_inst_busi_stat tb1,
+        tbl_auth_area tb2,
+        tbl_auth_type tb3
+        WHERE
+        tb1.auth_area_id = tb2.id
+        AND tb2.auth_type_code = tb3.type_code
+        AND tb1.auth_inst_detail_id = #{id}
+    </select>
+
+</mapper>
+

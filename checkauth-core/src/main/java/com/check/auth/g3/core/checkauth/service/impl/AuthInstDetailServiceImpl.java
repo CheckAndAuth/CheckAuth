@@ -45,9 +45,9 @@ public class AuthInstDetailServiceImpl implements AuthInstDetailService {
                 List<Map<String, Object>> staticsMap = null;
                 staticsMap = authStaticsMapper.getGroupStaticsByInstDetailId(detailEntity.getId());
                 staticsEntity.setGroupStaticsList(staticsMap);
-            }else{
+            }/*else{
                 staticsEntity.setGroupStaticsList(null);
-            }
+            }*/
             detailEntity.setAuthInstStaticsEntity(staticsEntity);
         }
 		return detailEntity;
@@ -77,5 +77,10 @@ public class AuthInstDetailServiceImpl implements AuthInstDetailService {
         page.setPageList(authList);
         return page;
     }
+
+	@Override
+	public int updatePageViewByInstCode(int pageView, String instCode) {
+		return authInstDetailMapper.updatePageViewByInstCode(pageView, instCode);
+	}
 
 }

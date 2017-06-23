@@ -2,6 +2,8 @@ package com.check.auth.g3.core.checkauth.dao;
 
 
 import com.check.auth.g3.core.checkauth.entity.*;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -42,5 +44,12 @@ public interface AuthInstDetailMapper {
      * 按instName、busiScopeName、districtCodeName模糊查询
      */
     public List<AuthInstDetailEntity> selectDetailListByFuzzyMap(Map<String,Object> map);
+    /**
+     * @desc 根据机构名称更新浏览量
+     * @param pageView 浏览量
+     * @param instCode 机构代码
+     * @return
+     */
+    public int updatePageViewByInstCode(@Param("pageView")int pageView, @Param("instCode")String instCode);
 
 }

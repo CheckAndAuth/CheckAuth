@@ -27,6 +27,8 @@ public class AuthInstDetailEntity extends AuthInstEntity {
 	private String entHode;//企业控股
     private String authYear;
     private int authCount;
+    private int authPersonCount;
+    private int pageView;//浏览量
     private AuthInstStaticsEntity authInstStaticsEntity;
 
 	public String getIsCCInst() {
@@ -201,7 +203,19 @@ public class AuthInstDetailEntity extends AuthInstEntity {
         this.authInstStaticsEntity = authInstStaticsEntity;
     }
 
-    @Override
+    public int getAuthPersonCount() {
+		return authPersonCount;
+	}
+	public void setAuthPersonCount(int authPersonCount) {
+		this.authPersonCount = authPersonCount;
+	}
+	public int getPageView() {
+		return pageView;
+	}
+	public void setPageView(int pageView) {
+		this.pageView = pageView;
+	}
+	@Override
 	public String toString() {
 		return "AuthInstDetailEntity [busiScope=" + busiScope + ", busiScopeName=" + busiScopeName + ", businessNumber="
 				+ businessNumber + ", cccBusinessScope=" + cccBusinessScope + ", oldInstCode=" + oldInstCode
@@ -209,8 +223,10 @@ public class AuthInstDetailEntity extends AuthInstEntity {
 				+ ", principalRegNum=" + principalRegNum + ", principalTypeName=" + principalTypeName + ", recordScope="
 				+ recordScope + ", recordTs=" + recordTs + ", regCapital=" + regCapital + ", regCapitalType="
 				+ regCapitalType + ", website=" + website + ", isCCInst=" + isCCInst + ", zdjgBm=" + zdjgBm
-				+ ", zdjgName=" + zdjgName + ", cnasRec=" + cnasRec + ", outsideRec=" + outsideRec + ", highnewTecRec="
-				+ highNewTecRec + ", orgCode=" + orgCode + ", entHode=" + entHode + "]";
+				+ ", zdjgName=" + zdjgName + ", cnasRec=" + cnasRec + ", outsideRec=" + outsideRec + ", highNewTecRec="
+				+ highNewTecRec + ", orgCode=" + orgCode + ", entHode=" + entHode + ", authYear=" + authYear
+				+ ", authCount=" + authCount + ", authPersonCount=" + authPersonCount + ", authInstStaticsEntity="
+				+ authInstStaticsEntity + "]";
 	}
 	
 	

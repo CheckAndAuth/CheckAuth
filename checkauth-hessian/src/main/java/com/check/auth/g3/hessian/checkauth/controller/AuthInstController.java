@@ -125,6 +125,7 @@ public class AuthInstController extends BaseController {
             if(authInstDetailEntity==null){
                 retMap=UtilMisc.toMap("retCode", "02", "retMsg", "没有找到对应记录！");
             }else{
+            	authInstDetailService.updatePageViewByInstCode(authInstDetailEntity.getPageView()+1, instCode);
                 retMap=UtilMisc.toMap("retCode", "00", "retMsg", "请求处理成功");
                 retMap.put("data", authInstDetailEntity);
             }

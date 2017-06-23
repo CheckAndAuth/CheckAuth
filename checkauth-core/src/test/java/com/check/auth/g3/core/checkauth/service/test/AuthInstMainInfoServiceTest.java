@@ -16,6 +16,7 @@ public class AuthInstMainInfoServiceTest {
 	
 	@Test
 	public void test() {
-		System.out.println(authInstMainInfoService.queryInstDetailByInstCode("CNCA-R-2002-012"));
+//		System.out.println(authInstMainInfoService.queryInstDetailByInstCode("CNCA-R-2002-012"));
+//		System.out.println(authInstMainInfoService.updatePageViewByInstCode(2, "CNCA-R-2002-012"));
 	}
 }

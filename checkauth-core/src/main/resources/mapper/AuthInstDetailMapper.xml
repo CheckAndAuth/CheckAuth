@@ -46,6 +46,8 @@
         <result property="entHode"              column="ent_hode"/>
         <result property="authYear" column="auth_year"/>
         <result property="authCount" column="auth_count"/>
+        <result property="authPersonCount" column="auth_person_count"/>
+        <result property="pageView" column="page_view"/>
 	</resultMap>
 
 	<sql id="allColumns">
@@ -85,7 +87,9 @@
 		t2.ratify_date ratify_date,
 		t2.validity_date validity_date,
 		t3.auth_year auth_year,
-		t3. auth_count auth_count
+		t3.auth_count auth_count,
+		t3.auth_person_count auth_person_count,
+		t1.page_view page_view
 	</sql>
 
 	<insert id="insert" parameterType="com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity">
@@ -173,6 +177,10 @@
         order by t1.id desc
         LIMIT #{offset}, #{limit}
     </select>
+    
+    <update id="updatePageViewByInstCode" parameterType="com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity">
+    	update tbl_auth_inst_detail set page_view = #{pageView} where 1=1 and inst_code=#{instCode}
+    </update>
 
 </mapper>
 

@@ -4,11 +4,15 @@ import com.check.auth.g3.core.checkauth.dao.AuthInstDetailMapper;
 import com.check.auth.g3.core.checkauth.dao.AuthStaticsMapper;
 import com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity;
 import com.check.auth.g3.core.checkauth.entity.AuthInstStaticsEntity;
+import com.check.auth.g3.core.checkauth.entity.query.BusiScope;
 import com.check.auth.g3.core.checkauth.service.AuthInstDetailService;
 import com.check.auth.g3.facade.checkauth.facade.dto.PageDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 @Service("authInstDetailService")
@@ -20,6 +24,7 @@ public class AuthInstDetailServiceImpl implements AuthInstDetailService {
     @Autowired
     AuthStaticsMapper authStaticsMapper;
 
+    private ObjectMapper mapper = new ObjectMapper();
 	@Override
 	public void insert(AuthInstDetailEntity authInstMainInfoEntity) {
 		authInstDetailMapper.insert(authInstMainInfoEntity);
@@ -41,6 +46,7 @@ public class AuthInstDetailServiceImpl implements AuthInstDetailService {
         if(detailEntity!=null){
             int instDetailId = detailEntity.getId();
             AuthInstStaticsEntity staticsEntity = authStaticsMapper.selectStaticsByInstDetailId(instDetailId);
+            adjustBusiScope(detailEntity);
             if(staticsEntity!=null){
                 List<Map<String, Object>> staticsMap = null;
                 staticsMap = authStaticsMapper.getGroupStaticsByInstDetailId(detailEntity.getId());
@@ -70,6 +76,11 @@ public class AuthInstDetailServiceImpl implements AuthInstDetailService {
 
         if (queryMap.containsKey("fuzzy")) {
             authList = authInstDetailMapper.selectDetailListByFuzzyMap(queryMap);
+            if(authList!=null){
+                for(AuthInstDetailEntity instDetail: authList){
+                    adjustBusiScope(instDetail);
+                }
+            }
         } else {
             //authList = authInstDetailMapper.selectAuthInstByMap(queryMap);
 
@@ -82,5 +93,17 @@ public class AuthInstDetailServiceImpl implements AuthInstDetailService {
 	public int updatePageViewByInstCode(int pageView, String instCode) {
 		return authInstDetailMapper.updatePageViewByInstCode(pageView, instCode);
 	}
+
+	public void adjustBusiScope(AuthInstDetailEntity instDetail){
+        if (StringUtils.isNotBlank(instDetail.getBusiScope())){
+            try{
+                List<BusiScope> busiScopeList=mapper.readValue(instDetail.getBusiScope(), List.class);
+                instDetail.setBusiScopeName(busiScopeList);
+                instDetail.setBusiScope(null);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

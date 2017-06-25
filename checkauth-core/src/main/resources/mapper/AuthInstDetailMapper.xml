@@ -8,7 +8,6 @@
 		<result property="id"                column="id" />
 		<result property="address"           column="address" />
 		<result property="busiScope"         column="busi_scope" />
-		<result property="busiScopeName"     column="busi_scope_name" />
 		<result property="businessNumber"    column="business_number" />
 		<result property="cccBusinessScope"  column="ccc_business_scope " />
 		<result property="contactPerson"     column="contact_person" />
@@ -53,7 +52,6 @@
 	<sql id="allColumns">
 		t1.id id,
 		t1.busi_scope busi_scope,
-		t1.busi_scope_name busi_scope_name,
 		t1.business_number business_number,
 		t1.ccc_business_scope ccc_business_scope,
 		t1.email email,
@@ -94,8 +92,8 @@
 
 	<insert id="insert" parameterType="com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity">
 		insert into tbl_auth_inst_detail
-		(id,address,busiScope,busiScopeName,businessNumber,cccBusinessScope,contactPeroson,districtCode,districtCodeName,email,exchangeDate,fax,instCode,instName,instStatus,instType,oldInstCode,orgCode,post,principal,principalRegNum,principalTypeName,ratifyDate,recordScope,recordTs,regCapital,regCapitalType,remarks,tel,validityDate,website,zdjgBm,zdjgName)
-		values(#{id},#{address},#{busiScope},#{busiScopeName},#{businessNumber},#{cccBusinessScope},#{contactPeroson},#{districtCode},#{districtCodeName},#{email},#{exchangeDate},#{fax},#{instCode},#{instName},#{instStatus},#{instType},#{oldInstCode},#{orgCode},#{post},#{principal},#{principalRegNum},#{principalTypeName},#{ratifyDate},#{recordScope},#{recordTs},#{regCapital},#{regCapitalType},#{remarks},#{tel},#{validityDate},#{website},#{zdjgBm},#{zdjgName})
+		(id,address,busiScope,businessNumber,cccBusinessScope,contactPeroson,districtCode,districtCodeName,email,exchangeDate,fax,instCode,instName,instStatus,instType,oldInstCode,orgCode,post,principal,principalRegNum,principalTypeName,ratifyDate,recordScope,recordTs,regCapital,regCapitalType,remarks,tel,validityDate,website,zdjgBm,zdjgName)
+		values(#{id},#{address},#{busiScope},#{businessNumber},#{cccBusinessScope},#{contactPeroson},#{districtCode},#{districtCodeName},#{email},#{exchangeDate},#{fax},#{instCode},#{instName},#{instStatus},#{instType},#{oldInstCode},#{orgCode},#{post},#{principal},#{principalRegNum},#{principalTypeName},#{ratifyDate},#{recordScope},#{recordTs},#{regCapital},#{regCapitalType},#{remarks},#{tel},#{validityDate},#{website},#{zdjgBm},#{zdjgName})
 	</insert>
 
 	<select id="selectDetailByInstCode" resultMap="detailMap" parameterType="java.lang.String">

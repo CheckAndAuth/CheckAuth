@@ -1,8 +1,12 @@
 package com.check.auth.g3.core.checkauth.entity;
 
+import com.check.auth.g3.core.checkauth.entity.query.BusiScope;
+
+import java.util.List;
+
 public class AuthInstDetailEntity extends AuthInstEntity {
 	private String busiScope;//认证类别代码
-	private String busiScopeName;//认证类别及认证领域
+    private List<BusiScope> busiScopeName;//认证类别及认证领域
 	private String businessNumber;//业务代码
 	private String cccBusinessScope;//CCC指定业务范围
 	private String oldInstCode;//原机构批准号
@@ -48,12 +52,6 @@ public class AuthInstDetailEntity extends AuthInstEntity {
 	}
 	public void setBusiScope(String busiScope) {
 		this.busiScope = busiScope;
-	}
-	public String getBusiScopeName() {
-		return busiScopeName;
-	}
-	public void setBusiScopeName(String busiScopeName) {
-		this.busiScopeName = busiScopeName;
 	}
 	public String getBusinessNumber() {
 		return businessNumber;
@@ -215,6 +213,14 @@ public class AuthInstDetailEntity extends AuthInstEntity {
 	public void setPageView(int pageView) {
 		this.pageView = pageView;
 	}
+
+    public List<BusiScope> getBusiScopeName() {
+        return busiScopeName;
+    }
+
+    public void setBusiScopeName(List<BusiScope> busiScopeName) {
+        this.busiScopeName = busiScopeName;
+    }
 	@Override
 	public String toString() {
 		return "AuthInstDetailEntity [busiScope=" + busiScope + ", busiScopeName=" + busiScopeName + ", businessNumber="

@@ -128,15 +128,19 @@
                 and t1.inst_name like CONCAT('%',#{instName},'%')
             </when>
             <when test="districtCodeName!='' and districtCodeName!=null">
-                and t1.district_code_name like CONCAT('%',#{districtCodeName},'%')
+                and t2.district_code_name like CONCAT('%',#{districtCodeName},'%')
             </when>
             <when test="instType!='' and instType!=null">
-                and t2.inst_type like CONCAT('%',#{instType},'%')
+                and t4.code_name like CONCAT('%',#{instType},'%')
+            </when>
+            <when test="busiScope!='' and busiScope!=null">
+            	and t1.busi_scope like CONCAT('%',#{busiScope},'%')
             </when>
             <otherwise>
-                and (t1.inst_name like CONCAT('%',#{instName},'%')
-                or t1.district_code_name like CONCAT('%',#{districtCodeName},'%')
-                or t2.inst_type like CONCAT('%',#{instType},'%'))
+                and (t1.inst_name like CONCAT('%',#{instName1},'%')
+                or t2.district_code_name like CONCAT('%',#{districtCodeName1},'%')
+                or t4.code_name like CONCAT('%',#{instType1},'%'))
+                or t1.busi_scope like CONCAT('%',#{busiScope1},'%')
             </otherwise>
         </choose>
 /*
@@ -158,15 +162,19 @@
                 and t1.inst_name like CONCAT('%',#{instName},'%')
             </when>
             <when test="districtCodeName!='' and districtCodeName!=null">
-                and t1.district_code_name like CONCAT('%',#{districtCodeName},'%')
+                and t2.district_code_name like CONCAT('%',#{districtCodeName},'%')
             </when>
             <when test="instType!='' and instType!=null">
-                and t2.inst_type like CONCAT('%',#{instType},'%')
+                and t4.code_name like CONCAT('%',#{instType},'%')
+            </when>
+            <when test="busiScope!='' and busiScope!=null">
+            	and t1.busi_scope like CONCAT('%',#{busiScope},'%')
             </when>
             <otherwise>
-                 and ( t1.inst_name like CONCAT('%',#{instName},'%')
-                 or t1.district_code_name like CONCAT('%',#{districtCodeName},'%')
-                 or t2.inst_type like CONCAT('%',#{instType},'%'))
+                 and (t1.inst_name like CONCAT('%',#{instName1},'%')
+                or t2.district_code_name like CONCAT('%',#{districtCodeName1},'%')
+                or t4.code_name like CONCAT('%',#{instType1},'%'))
+                or t1.busi_scope like CONCAT('%',#{busiScope1},'%')
             </otherwise>
         </choose>
 /*

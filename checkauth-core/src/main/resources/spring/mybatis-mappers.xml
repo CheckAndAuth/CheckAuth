@@ -13,5 +13,7 @@
     <bean id="AuthInstStaticsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.check.auth.g3.core.checkauth.dao.AuthStaticsMapper"/>
     </bean>
-
+	<bean id="userAdviceMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.check.auth.g3.core.checkauth.dao.UserAdviceMapper"/>
+	</bean>
 </beans>

@@ -140,11 +140,16 @@ public class AuthInstController extends BaseController {
             if("1".equals(queryFlag)) {
                 map.put("instName",instQuery.getQueryContent());
             }else if ("2".equals(queryFlag)) {
-                map.put("busiScopeName", instQuery.getQueryContent());
+                map.put("busiScope", instQuery.getQueryContent());
             }else if ("3".equals(queryFlag)) {
                 map.put("districtCodeName", instQuery.getQueryContent());
             }else if ("4".equals(queryFlag)){
                 map.put("instType", instQuery.getQueryContent());
+            }else if("0".equals(queryFlag)){
+            	map.put("instName1",instQuery.getQueryContent());
+            	map.put("busiScope1", instQuery.getQueryContent());
+            	map.put("districtCodeName1", instQuery.getQueryContent());
+            	map.put("instType1", instQuery.getQueryContent());
             }else {
                 throw new IllegalArgumentException("检索类型参数不能为空");
             }

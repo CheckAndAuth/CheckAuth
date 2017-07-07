@@ -28,7 +28,7 @@ public class UserAdviceController extends BaseController {
 
     @RequestMapping("/submit")
     @ResponseBody
-    public Map<String,Object> queryByInstCode(HttpServletRequest request, UserAdviceEntity userAdviceEntity) {
+    public Map<String,Object> submit(HttpServletRequest request, UserAdviceEntity userAdviceEntity) {
         Map<String,Object> retMap=null;
         if(null == userAdviceEntity){
             retMap=UtilMisc.toMap("retCode","01","retMsg","提交的内容不能为空！");

@@ -37,4 +37,5 @@ public interface AuthInstDetailService {
     public PageDTO<AuthInstDetailEntity> selectListByPage(Map<String, Object> queryMap);
     public int updatePageViewByInstCode(int pageView, String instCode);
 
+    public List<AuthInstDetailEntity> selectTopN();
 }

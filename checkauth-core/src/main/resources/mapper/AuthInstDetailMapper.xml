@@ -41,7 +41,7 @@
 		<result property="cnasRec"           column="cnas_rec" />
 		<result property="outsideRec"        column="outside_rec" />
 		<result property="highNewTecRec"        column="high_new_tec_rec" />
-        <result property="isCCInst"             column="is_cc_inst"/>
+        <result property="isCCCInst"             column="is_ccc_inst"/>
         <result property="entHode"              column="ent_hode"/>
         <result property="authYear" column="auth_year"/>
         <result property="authCount" column="auth_count"/>
@@ -87,7 +87,8 @@
 		t3.auth_year auth_year,
 		t3.auth_count auth_count,
 		t3.auth_person_count auth_person_count,
-		t1.page_view page_view
+		t1.page_view page_view,
+		t1.is_ccc_inst is_ccc_inst
 	</sql>
 
 	<insert id="insert" parameterType="com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity">
@@ -139,8 +140,8 @@
             <otherwise>
                 and (t1.inst_name like CONCAT('%',#{instName1},'%')
                 or t2.district_code_name like CONCAT('%',#{districtCodeName1},'%')
-                or t4.code_name like CONCAT('%',#{instType1},'%'))
-                or t1.busi_scope like CONCAT('%',#{busiScope1},'%')
+                or t4.code_name like CONCAT('%',#{instType1},'%')
+                or t1.busi_scope like CONCAT('%',#{busiScope1},'%'))
             </otherwise>
         </choose>
 /*
@@ -173,8 +174,8 @@
             <otherwise>
                  and (t1.inst_name like CONCAT('%',#{instName1},'%')
                 or t2.district_code_name like CONCAT('%',#{districtCodeName1},'%')
-                or t4.code_name like CONCAT('%',#{instType1},'%'))
-                or t1.busi_scope like CONCAT('%',#{busiScope1},'%')
+                or t4.code_name like CONCAT('%',#{instType1},'%')
+                or t1.busi_scope like CONCAT('%',#{busiScope1},'%'))
             </otherwise>
         </choose>
 /*
@@ -187,6 +188,71 @@
     <update id="updatePageViewByInstCode" parameterType="com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity">
     	update tbl_auth_inst_detail set page_view = #{pageView} where 1=1 and inst_code=#{instCode}
     </update>
+    
+    <select id="selectTopN" resultMap="detailMap">
+    	SELECT
+			t.inst_name inst_name,
+			t.busi_scope busi_scope
+		FROM
+			tbl_auth_inst_detail t
+		ORDER BY
+			t.page_view DESC
+		LIMIT 5
+    </select>
+    
+    
+        <select id="selectCountByMap" resultType="long" parameterType="java.util.Map">
+        SELECT count(1)
+        from tbl_auth_inst_detail t1
+        left join tbl_auth_inst t2 on t1.inst_code=t2.inst_code
+        left join tbl_auth_statics t3 on t1.id=t3.inst_detail_id
+        left join tbl_auth_inst_type t4 on t2.inst_type=t4.code_type
+        where 1=1
+        <choose>
+            <when test="isCCCInst!='' and isCCCInst != null">
+                and t1.is_ccc_inst = #{isCCCInst}
+            </when>
+            <when test="cnasRec!='' and cnasRec!=null">
+                and t1.cnas_rec = #{cnasRec}
+            </when>
+            
+            <otherwise>
+                /*order by t3.auth_count desc*/
+            </otherwise>
+        </choose>
+/*
+        and t3.auth_year='2016'
+*/
+    </select>
+
+
+    <select id="selectDetailListByMap" resultMap="detailMap" parameterType="java.util.Map">
+        SELECT   <include refid="allColumns"/>
+        from tbl_auth_inst_detail t1
+        left join tbl_auth_inst t2 on t1.inst_code=t2.inst_code
+        left join tbl_auth_statics t3 on t1.id=t3.inst_detail_id
+        left join tbl_auth_inst_type t4 on t2.inst_type=t4.code_type
+        left join tbl_auth_inst_status t5 on t2.inst_status = t5.status_code
+        where 1=1
+        <choose>
+            <when test="isCCCInst!='' and isCCCInst != null">
+                and t1.is_ccc_inst = #{isCCCInst}
+            </when>
+            <when test="cnasRec!='' and cnasRec!=null">
+                and t1.cnas_rec = #{cnasRec}
+            </when>
+            
+            <otherwise>
+                /*order by t3.auth_count desc*/
+            </otherwise>
+        </choose>
+/*
+        and t3.auth_year='2016'
+*/
+        order by t1.id desc
+        LIMIT #{offset}, #{limit}
+    </select>
+    
 
 </mapper>
 

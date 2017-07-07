@@ -21,7 +21,7 @@ public class AuthInstDetailEntity extends AuthInstEntity {
 	private String regCapital;//eg. 18000
 	private String regCapitalType;//01
 	private String website;//网址, eg.www.cqc.com.cn
-	private String isCCInst;//是否为3C认证机构,0代表否,1代表是
+	private String isCCCInst;//是否为3C认证机构,0代表否,1代表是
 	private String zdjgBm;//eg.01
 	private String zdjgName;//中国质量认证中心
 	private String cnasRec;//CNAS认可
@@ -35,11 +35,11 @@ public class AuthInstDetailEntity extends AuthInstEntity {
     private int pageView;//浏览量
     private AuthInstStaticsEntity authInstStaticsEntity;
 
-	public String getIsCCInst() {
-		return isCCInst;
+	public String getIsCCCInst() {
+		return isCCCInst;
 	}
-	public void setIsCCInst(String isCCInst) {
-		this.isCCInst = isCCInst;
+	public void setIsCCCInst(String isCCCInst) {
+		this.isCCCInst = isCCCInst;
 	}
 	public String getEntHode() {
 		return entHode;
@@ -228,7 +228,7 @@ public class AuthInstDetailEntity extends AuthInstEntity {
 				+ ", exchangeDate=" + exchangeDate + ", fax=" + fax + ", email=" + email + ", post=" + post
 				+ ", principalRegNum=" + principalRegNum + ", principalTypeName=" + principalTypeName + ", recordScope="
 				+ recordScope + ", recordTs=" + recordTs + ", regCapital=" + regCapital + ", regCapitalType="
-				+ regCapitalType + ", website=" + website + ", isCCInst=" + isCCInst + ", zdjgBm=" + zdjgBm
+				+ regCapitalType + ", website=" + website + ", isCCCInst=" + isCCCInst + ", zdjgBm=" + zdjgBm
 				+ ", zdjgName=" + zdjgName + ", cnasRec=" + cnasRec + ", outsideRec=" + outsideRec + ", highNewTecRec="
 				+ highNewTecRec + ", orgCode=" + orgCode + ", entHode=" + entHode + ", authYear=" + authYear
 				+ ", authCount=" + authCount + ", authPersonCount=" + authPersonCount + ", authInstStaticsEntity="

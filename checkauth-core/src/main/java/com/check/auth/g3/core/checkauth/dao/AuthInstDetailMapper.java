@@ -38,6 +38,11 @@ public interface AuthInstDetailMapper {
      * 根据模糊查询条件获取机构认证数量
      */
     public Long selectCountByFuzzyMap(Map<String, Object> map);
+    
+    /**
+     * 根据条件获取热门查询下的机构认证数量
+     */
+    public Long selectCountByMap(Map<String, Object> map);
 
     /**
      * 模糊查询
@@ -45,11 +50,22 @@ public interface AuthInstDetailMapper {
      */
     public List<AuthInstDetailEntity> selectDetailListByFuzzyMap(Map<String,Object> map);
     /**
+     * 热门查询
+     * 根据条件获取热门查询下的机构认证数量
+     */
+    public List<AuthInstDetailEntity> selectDetailListByMap(Map<String,Object> map);
+    /**
      * @desc 根据机构名称更新浏览量
      * @param pageView 浏览量
      * @param instCode 机构代码
      * @return
      */
     public int updatePageViewByInstCode(@Param("pageView")int pageView, @Param("instCode")String instCode);
+    /**
+     * 获取top N条记录,用于热搜词
+     * @param nTop
+     * @return
+     */
+    public List<AuthInstDetailEntity> selectTopN();
 
 }

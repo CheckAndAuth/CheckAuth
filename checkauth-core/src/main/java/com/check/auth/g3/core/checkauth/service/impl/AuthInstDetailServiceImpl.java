@@ -67,8 +67,8 @@ public class AuthInstDetailServiceImpl implements AuthInstDetailService {
         List<AuthInstDetailEntity> authList = null;
         if (queryMap.containsKey("fuzzy")) {
             count = authInstDetailMapper.selectCountByFuzzyMap(queryMap);
-        } else {
-           // count = authInstDetailMapper.selectCountByMap(queryMap);
+        } else {//热门查询分支
+            count = authInstDetailMapper.selectCountByMap(queryMap);
         }
         PageDTO<AuthInstDetailEntity> page = new PageDTO<AuthInstDetailEntity>(count, pageNum, pageSize);
         queryMap.put("offset", page.getOffset());
@@ -81,9 +81,13 @@ public class AuthInstDetailServiceImpl implements AuthInstDetailService {
                     adjustBusiScope(instDetail);
                 }
             }
-        } else {
-            //authList = authInstDetailMapper.selectAuthInstByMap(queryMap);
-
+        } else {//热门查询分支
+        	authList = authInstDetailMapper.selectDetailListByMap(queryMap);
+            if(authList!=null){
+                for(AuthInstDetailEntity instDetail: authList){
+                    adjustBusiScope(instDetail);
+                }
+            }
         }
         page.setPageList(authList);
         return page;
@@ -105,5 +109,10 @@ public class AuthInstDetailServiceImpl implements AuthInstDetailService {
             }
         }
     }
+
+	@Override
+	public List<AuthInstDetailEntity> selectTopN() {
+		return authInstDetailMapper.selectTopN();
+	}
 
 }

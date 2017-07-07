@@ -5,6 +5,7 @@ public class UserAdviceEntity {
 	private String name;//姓名
 	private String mobilePhone;//手机号
 	private String content;//用户建议
+	private String createTime;//创建时间
 	public int getId() {
 		return id;
 	}
@@ -29,11 +30,17 @@ public class UserAdviceEntity {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
+	public String getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
 	@Override
 	public String toString() {
 		return "UserAdviceEntity [id=" + id + ", name=" + name + ", mobilePhone=" + mobilePhone + ", content=" + content
-				+ "]";
+				+ ", createTime=" + createTime + "]";
 	}
-	
 	
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -88,31 +89,29 @@ public class AuthInstController extends BaseController {
             return retMap;
         }
     }
-//    /**
-//     *
-//     * @param request
-//     * @param content 输入的搜索词
-//     * @param flag 标识, 1表示按机构名称查询, 2表示按认证领域查询, 3表示按地区查询, 4表示按机构类型查询
-//     * @return
-//     */
-//    @RequestMapping("/fuzzyQueryByContent")
-//    @ResponseBody
-//    public Map<String,Object> fuzzyQueryByContent(HttpServletRequest request, String content, String flag){
-//    	Map<String,Object> retMap=null;
-//        if(StringUtils.isBlank(content)){
-//            retMap=UtilMisc.toMap("retCode","01","retMsg","content不能为空！");
-//            return retMap;
-//        }else{
-//            List<AuthInstEntity> authInstEntities=authInstService.selectAuthInstByContent(content, flag);
-//            if(authInstEntities==null || authInstEntities.isEmpty()){
-//                retMap=UtilMisc.toMap("retCode", "02", "retMsg", "没有找到对应记录！");
-//            }else{
-//                retMap=UtilMisc.toMap("retCode", "00", "retMsg", "请求处理成功");
-//                retMap.put("data",authInstEntities);
-//            }
-//            return retMap;
-//        }
-//    }
+    /**
+     *
+     * @param request
+     * @param instQuery 输入的搜索词,queryFlag 标识, 1表示CCC认证机构, 2表示有机认证机构, 3表示ISO9001认证机构, 4表示CNAS认可机构,5表示按成立年限排序,6表示按证书量排序
+     * @return
+     */
+    @RequestMapping("/hotQuery")
+    @ResponseBody
+    public Map<String,Object> hotQuery(HttpServletRequest request, InstQuery instQuery){
+    	Map<String,Object> retMap=null;
+        if(StringUtils.isBlank(instQuery.getQueryFlag())){
+            retMap=UtilMisc.toMap("retCode","01","retMsg","content不能为空！");
+            return retMap;
+        }else{
+        	Map<String, Object> reqMap = adjustHotQueryKey(instQuery);
+        	reqMap.put("pageNum", instQuery.getPageNum());
+            reqMap.put("pageSize", instQuery.getPageSize());
+            PageDTO<AuthInstDetailEntity> pageList = authInstDetailService.selectListByPage(reqMap);
+            retMap = UtilMisc.toMap("retCode", "00", "retMsg", "请求处理成功");
+            retMap.put("data", pageList);
+            return retMap;
+        }
+    }
     @RequestMapping("/queryDetailByInstCode")
     @ResponseBody
     public Map<String, Object> queryDetailByInstCode(HttpServletRequest request, String instCode){
@@ -158,5 +157,40 @@ public class AuthInstController extends BaseController {
             return map;
         }
     }
+    
+    private Map<String,Object> adjustHotQueryKey(InstQuery instQuery){
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	String queryFlag=instQuery.getQueryFlag();
+    	if(StringUtils.isNotBlank(queryFlag)) {
+    		if("0".equals(queryFlag)) {//3C认证机构
+    			map.put("isCCCInst","是");
+    		}else if ("1".equals(queryFlag)) {//有机认证机构
+//    			map.put("busiScope", instQuery.getQueryContent());
+    		}else if ("2".equals(queryFlag)) {//ISO9001认证机构
+//    			map.put("districtCodeName", instQuery.getQueryContent());
+    		}else if ("3".equals(queryFlag)){//CNAS认可机构
+    			map.put("cnasRec", "认可");
+    		}else if("4".equals(queryFlag)){//按成立年限排序
+    		}else if ("5".equals(queryFlag)) {//按证书数量排序
+				
+			}else {
+    			throw new IllegalArgumentException("检索类型参数不能为空");
+    		}
+    		return map;
+    	}else{
+    		return map;
+    	}
+    }
+    
+    
+    @RequestMapping("/getTopN")
+    @ResponseBody
+    public Map<String, Object> getTopN(HttpServletRequest request) {
+    	Map<String,Object> retMap=new HashMap<String,Object>();
+    	List<AuthInstDetailEntity> list=authInstDetailService.selectTopN();
+    	retMap=UtilMisc.toMap("retCode", "00", "retMsg", "请求处理成功");
+    	retMap.put("data", list);
+    	return retMap;
+	}
 
 }

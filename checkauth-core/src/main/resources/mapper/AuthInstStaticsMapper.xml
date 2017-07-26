@@ -23,10 +23,18 @@
         WHERE inst_detail_id=#{instDetailId}
 	</select>
 
-     <select id="getGroupStaticsByInstDetailId" resultType="java.util.HashMap" parameterType="int">
+     <!-- <select id="getGroupStaticsByInstDetailId" resultType="java.util.HashMap" parameterType="int">
         select t1.auth_type_name typeName,sum(t1.auth_num) authNum,SUM(t1.full_time_num+t1.part_time_num) as personNum
         from tbl_auth_statics t
         left join tbl_auth_statics_detail t1 on t.id=t1.auth_statics_detail_id
+        WHERE t.inst_detail_id=#{instDetailId}
+        and t.auth_year='2016'
+        group by auth_type_name
+     </select> -->
+     <select id="getGroupStaticsByInstDetailId" resultType="java.util.HashMap" parameterType="int">
+        select t1.auth_type_name typeName,t1.auth_num authNum,t1.auth_person_num as personNum
+        from tbl_auth_statics t
+        left join tbl_auth_statics_detail t1 on t.id=t1.auth_statics_id
         WHERE t.inst_detail_id=#{instDetailId}
         and t.auth_year='2016'
         group by auth_type_name

@@ -38,4 +38,6 @@ public interface AuthInstDetailService {
     public int updatePageViewByInstCode(int pageView, String instCode);
 
     public List<AuthInstDetailEntity> selectTopN();
+    
+    public int updateCNASRecByInstName(String instName);
 }

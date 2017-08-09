@@ -3,6 +3,7 @@ package com.check.auth.g3.core.checkauth.entity;
 import com.check.auth.g3.core.checkauth.entity.query.BusiScope;
 
 import java.util.List;
+import java.util.Map;
 
 public class AuthInstDetailEntity extends AuthInstEntity {
 	private String busiScope;//认证类别代码
@@ -34,6 +35,8 @@ public class AuthInstDetailEntity extends AuthInstEntity {
     private int authPersonCount;
     private int pageView;//浏览量
     private AuthInstStaticsEntity authInstStaticsEntity;
+    
+    private List<Map<String,Object>> cnasList;//cnas list
 
 	public String getIsCCCInst() {
 		return isCCCInst;
@@ -221,6 +224,13 @@ public class AuthInstDetailEntity extends AuthInstEntity {
     public void setBusiScopeName(List<BusiScope> busiScopeName) {
         this.busiScopeName = busiScopeName;
     }
+    
+	public List<Map<String, Object>> getCnasList() {
+		return cnasList;
+	}
+	public void setCnasList(List<Map<String, Object>> cnasList) {
+		this.cnasList = cnasList;
+	}
 	@Override
 	public String toString() {
 		return "AuthInstDetailEntity [busiScope=" + busiScope + ", busiScopeName=" + busiScopeName + ", businessNumber="

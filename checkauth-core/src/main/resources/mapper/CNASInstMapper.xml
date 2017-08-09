@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.check.auth.g3.core.checkauth.dao.CNASInstMapper">
+
+	<resultMap id="cnasInstMap" type="com.check.auth.g3.core.checkauth.entity.CNASInstEntity">
+		<result property="id" 				column="id" />
+		<result property="instName"     	column="inst_name" />
+		<result property="field"        	column="field" />
+		<result property="validityDate"		column="validity_date" />
+		<result property="ratifyDate"    	column="ratify_date" />
+		<result property="firstAwardDate" 	column="first_award_date" />
+		<result property="principal"    	column="principal" />
+		<result property="contact"    		column="contact" />
+		<result property="status"    		column="status" />
+		<result property="isMLA"    		column="isMLA" />
+	</resultMap>
+
+	<sql id="allColumns">
+		t1.id id,
+		t1.inst_name inst_name,
+		t1.field field,
+		t1.validity_date validity_date,
+		t1.ratify_date ratify_date,
+		t1.first_award_date first_award_date,
+		t1.principle principle,
+		t1.contact contact,
+		t1.status status,
+		t1.isMLA isMLA
+	</sql>
+
+	<insert id="insertBatch" parameterType="java.util.List">
+		insert into tbl_cnas_inst
+		(inst_name, field, validity_date, ratify_date, first_award_date, principal, contact, status, is_MLA)
+		values
+		<foreach collection="list" item="cnasInstEntity" index="index" separator=",">
+		(
+		#{cnasInstEntity.instName},
+		#{cnasInstEntity.field},
+		#{cnasInstEntity.validityDate},
+		#{cnasInstEntity.ratifyDate},
+		#{cnasInstEntity.firstAwardDate},
+		#{cnasInstEntity.principal},
+		#{cnasInstEntity.contact},
+		#{cnasInstEntity.status},
+		#{cnasInstEntity.isMLA}
+		)
+		</foreach>
+	</insert>
+
+	<select id="selectAllInstName" resultType="java.lang.String">
+		select distinct t.inst_name from tbl_cnas_inst t
+	</select>
+	
+	<select id="getCnasListByInstName" resultType="java.util.HashMap" parameterType="java.lang.String">
+		SELECT t.field as field, t1.field_name as fieldName FROM tbl_cnas_inst t LEFT JOIN tbl_cnas_field t1 on t.field = t1.field_code WHERE t.inst_name = #{instName}
+	</select>
+</mapper>
+

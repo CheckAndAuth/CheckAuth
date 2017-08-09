@@ -2,6 +2,7 @@ package com.check.auth.g3.core.checkauth.service.impl;
 
 import com.check.auth.g3.core.checkauth.dao.AuthInstDetailMapper;
 import com.check.auth.g3.core.checkauth.dao.AuthStaticsMapper;
+import com.check.auth.g3.core.checkauth.dao.CNASInstMapper;
 import com.check.auth.g3.core.checkauth.entity.AuthInstDetailEntity;
 import com.check.auth.g3.core.checkauth.entity.AuthInstStaticsEntity;
 import com.check.auth.g3.core.checkauth.entity.query.BusiScope;
@@ -23,6 +24,9 @@ public class AuthInstDetailServiceImpl implements AuthInstDetailService {
 
     @Autowired
     AuthStaticsMapper authStaticsMapper;
+    
+    @Autowired
+    CNASInstMapper cnasInstMapper;
 
     private ObjectMapper mapper = new ObjectMapper();
 	@Override
@@ -55,6 +59,9 @@ public class AuthInstDetailServiceImpl implements AuthInstDetailService {
                 staticsEntity.setGroupStaticsList(null);
             }*/
             detailEntity.setAuthInstStaticsEntity(staticsEntity);
+            String instName = detailEntity.getInstName();
+            List<Map<String, Object>> cnasList = cnasInstMapper.getCnasListByInstName(instName);
+            detailEntity.setCnasList(cnasList);
         }
 		return detailEntity;
 	}
@@ -113,6 +120,11 @@ public class AuthInstDetailServiceImpl implements AuthInstDetailService {
 	@Override
 	public List<AuthInstDetailEntity> selectTopN() {
 		return authInstDetailMapper.selectTopN();
+	}
+
+	@Override
+	public int updateCNASRecByInstName(String instName) {
+		return authInstDetailMapper.updateCNASRecByInstName(instName);
 	}
 
 }

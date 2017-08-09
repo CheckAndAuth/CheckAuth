@@ -67,5 +67,11 @@ public interface AuthInstDetailMapper {
      * @return
      */
     public List<AuthInstDetailEntity> selectTopN();
+    /**
+     * 根据instName更新cnas_rec字段
+     * @param instName
+     * @return
+     */
+    public int updateCNASRecByInstName(String instName);
 
 }

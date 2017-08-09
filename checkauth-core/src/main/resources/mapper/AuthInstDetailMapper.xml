@@ -253,6 +253,9 @@
         LIMIT #{offset}, #{limit}
     </select>
     
+    <update id="updateCNASRecByInstName" parameterType="java.lang.String">
+    	update tbl_auth_inst_detail t set t.cnas_rec = '认可' where t.inst_name = #{instName}
+    </update>
 
 </mapper>
 

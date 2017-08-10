@@ -47,6 +47,8 @@
         <result property="authCount" column="auth_count"/>
         <result property="authPersonCount" column="auth_person_count"/>
         <result property="pageView" column="page_view"/>
+        <result property="isISO9001Inst" column="is_iso9001_inst"/>
+        <result property="isOrganicInst" column="is_organic_inst"/>
 	</resultMap>
 
 	<sql id="allColumns">
@@ -212,12 +214,20 @@
             <when test="isCCCInst!='' and isCCCInst != null">
                 and t1.is_ccc_inst = #{isCCCInst}
             </when>
+            <when test="isOrganicInst!='' and isOrganicInst != null">
+            	and t1.is_organic_inst = #{isOrganicInst}
+            </when>
+            <when test="isISO9001Inst!='' and isISO9001Inst != null">
+            	and t1.is_iso9001_inst = #{isISO9001Inst}
+            </when>
             <when test="cnasRec!='' and cnasRec!=null">
                 and t1.cnas_rec = #{cnasRec}
             </when>
-            
+            <when test="extTime!='' and extTime!=null">
+            	order by t2.ratify_date desc
+            </when>
             <otherwise>
-                /*order by t3.auth_count desc*/
+                order by t3.auth_count desc
             </otherwise>
         </choose>
 /*
@@ -237,19 +247,30 @@
         <choose>
             <when test="isCCCInst!='' and isCCCInst != null">
                 and t1.is_ccc_inst = #{isCCCInst}
+                order by t1.id desc
+            </when>
+            <when test="isOrganicInst!='' and isOrganicInst != null">
+            	and t1.is_organic_inst = #{isOrganicInst}
+            	order by t1.id desc
+            </when>
+            <when test="isISO9001Inst!='' and isISO9001Inst != null">
+            	and t1.is_iso9001_inst = #{isISO9001Inst}
+            	order by t1.id desc
             </when>
             <when test="cnasRec!='' and cnasRec!=null">
                 and t1.cnas_rec = #{cnasRec}
+                order by t1.id desc
             </when>
-            
+            <when test="extTime!='' and extTime!=null">
+            	order by t2.ratify_date desc
+            </when>
             <otherwise>
-                /*order by t3.auth_count desc*/
+                order by t3.auth_count desc
             </otherwise>
         </choose>
 /*
         and t3.auth_year='2016'
 */
-        order by t1.id desc
         LIMIT #{offset}, #{limit}
     </select>
     

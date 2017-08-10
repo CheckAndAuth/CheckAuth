@@ -165,14 +165,15 @@ public class AuthInstController extends BaseController {
     		if("0".equals(queryFlag)) {//3C认证机构
     			map.put("isCCCInst","是");
     		}else if ("1".equals(queryFlag)) {//有机认证机构
-//    			map.put("busiScope", instQuery.getQueryContent());
+    			map.put("isOrganicInst", "1");
     		}else if ("2".equals(queryFlag)) {//ISO9001认证机构
-//    			map.put("districtCodeName", instQuery.getQueryContent());
+    			map.put("isISO9001Inst", "1");
     		}else if ("3".equals(queryFlag)){//CNAS认可机构
     			map.put("cnasRec", "认可");
     		}else if("4".equals(queryFlag)){//按成立年限排序
+    			map.put("extTime", "1");
     		}else if ("5".equals(queryFlag)) {//按证书数量排序
-				
+				map.put("authCount", "1");
 			}else {
     			throw new IllegalArgumentException("检索类型参数不能为空");
     		}

@@ -38,6 +38,9 @@ public class AuthInstDetailEntity extends AuthInstEntity {
     
     private List<Map<String,Object>> cnasList;//cnas list
 
+    private String isISO9001Inst;//是否是iso_9001认证机构
+    private String isOrganicInst;//是否是有机认证机构
+    
 	public String getIsCCCInst() {
 		return isCCCInst;
 	}
@@ -231,6 +234,19 @@ public class AuthInstDetailEntity extends AuthInstEntity {
 	public void setCnasList(List<Map<String, Object>> cnasList) {
 		this.cnasList = cnasList;
 	}
+	
+	public String getIsISO9001Inst() {
+		return isISO9001Inst;
+	}
+	public void setIsISO9001Inst(String isISO9001Inst) {
+		this.isISO9001Inst = isISO9001Inst;
+	}
+	public String getIsOrganicInst() {
+		return isOrganicInst;
+	}
+	public void setIsOrganicInst(String isOrganicInst) {
+		this.isOrganicInst = isOrganicInst;
+	}
 	@Override
 	public String toString() {
 		return "AuthInstDetailEntity [busiScope=" + busiScope + ", busiScopeName=" + busiScopeName + ", businessNumber="
@@ -241,9 +257,9 @@ public class AuthInstDetailEntity extends AuthInstEntity {
 				+ regCapitalType + ", website=" + website + ", isCCCInst=" + isCCCInst + ", zdjgBm=" + zdjgBm
 				+ ", zdjgName=" + zdjgName + ", cnasRec=" + cnasRec + ", outsideRec=" + outsideRec + ", highNewTecRec="
 				+ highNewTecRec + ", orgCode=" + orgCode + ", entHode=" + entHode + ", authYear=" + authYear
-				+ ", authCount=" + authCount + ", authPersonCount=" + authPersonCount + ", authInstStaticsEntity="
-				+ authInstStaticsEntity + "]";
+				+ ", authCount=" + authCount + ", authPersonCount=" + authPersonCount + ", pageView=" + pageView
+				+ ", authInstStaticsEntity=" + authInstStaticsEntity + ", cnasList=" + cnasList + ", isISO9001Inst="
+				+ isISO9001Inst + ", isOrganicInst=" + isOrganicInst + "]";
 	}
-	
 	
 }

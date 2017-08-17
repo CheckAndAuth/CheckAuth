@@ -19,4 +19,7 @@
 	<bean id="cnasInstMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.check.auth.g3.core.checkauth.dao.CNASInstMapper"/>
 	</bean>
+	<bean id="regionMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.check.auth.g3.core.checkauth.dao.RegionMapper"/>
+	</bean>
 </beans>

@@ -107,6 +107,7 @@
         left join tbl_auth_inst_type t4 on t2.inst_type=t4.code_type
         left join tbl_auth_inst_status t5 on t2.inst_status = t5.status_code
 		WHERE t1.inst_code=#{instCode}
+		order by t2.ratify_date,t3.auth_count DESC
 	</select>
 
     <select id="selectDetailByInstName" resultMap="detailMap" parameterType="java.lang.String">
@@ -117,6 +118,7 @@
         left join tbl_auth_inst_type t4 on t2.inst_type=t4.code_type
         left join tbl_auth_inst_status t5 on t2.inst_status = t5.status_code
         where t1.instName like CONCAT('%',#{instName},'%')
+        order by t2.ratify_date,t3.auth_count DESC
     </select>
 
     <select id="selectCountByFuzzyMap" resultType="long" parameterType="java.util.Map">
@@ -183,7 +185,7 @@
 /*
         and t3.auth_year='2016'
 */
-        order by t1.id desc
+        order by t2.ratify_date,t3.auth_count DESC
         LIMIT #{offset}, #{limit}
     </select>
     
@@ -247,25 +249,25 @@
         <choose>
             <when test="isCCCInst!='' and isCCCInst != null">
                 and t1.is_ccc_inst = #{isCCCInst}
-                order by t1.id desc
+                order by t2.ratify_date,t3.auth_count DESC
             </when>
             <when test="isOrganicInst!='' and isOrganicInst != null">
             	and t1.is_organic_inst = #{isOrganicInst}
-            	order by t1.id desc
+            	order by t2.ratify_date,t3.auth_count DESC
             </when>
             <when test="isISO9001Inst!='' and isISO9001Inst != null">
             	and t1.is_iso9001_inst = #{isISO9001Inst}
-            	order by t1.id desc
+            	order by t2.ratify_date,t3.auth_count DESC
             </when>
             <when test="cnasRec!='' and cnasRec!=null">
                 and t1.cnas_rec = #{cnasRec}
-                order by t1.id desc
+                order by t2.ratify_date,t3.auth_count DESC
             </when>
             <when test="extTime!='' and extTime!=null">
-            	order by t2.ratify_date desc
+            	order by t2.ratify_date,t3.auth_count DESC
             </when>
             <otherwise>
-                order by t3.auth_count desc
+                order by t3.auth_count DESC,t2.ratify_date
             </otherwise>
         </choose>
 /*

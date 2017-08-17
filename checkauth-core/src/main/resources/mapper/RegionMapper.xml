@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.check.auth.g3.core.checkauth.dao.RegionMapper">
+
+	<resultMap id="regionEntity" type="com.check.auth.g3.core.checkauth.entity.RegionEntity">
+		<result property="regionId"				column="REGION_ID" />
+		<result property="regionCode"     		column="REGION_CODE" />
+		<result property="regionName" 			column="REGION_NAME" />
+		<result property="parentId"				column="PARENT_ID" />
+		<result property="regionLevel"    		column="REGION_LEVEL" />
+		<result property="regionOrder" 			column="REGION_ORDER" />
+		<result property="regionNameEn"    		column="REGION_NAME_EN" />
+		<result property="regionShortNameEn" 	column="REGION_SHORTNAME_EN" />
+	</resultMap>
+
+	<sql id="allColumns">
+		t.REGION_ID REGION_ID,
+		t.REGION_CODE REGION_CODE,
+		t.REGION_NAME REGION_NAME,
+		t.PARENT_ID PARENT_ID,
+		t.REGION_LEVEL REGION_LEVEL,
+		t.REGION_ORDER REGION_ORDER,
+		t.REGION_NAME_EN REGION_NAME_EN,
+		t.REGION_SHORTNAME_EN REGION_SHORTNAME_EN
+	</sql>
+
+	<select id="selectRegionByParentId" resultMap="regionEntity" parameterType="java.lang.Integer">
+		SELECT <include refid="allColumns"/> FROM tbl_region t WHERE t.PARENT_ID = #{parentId}
+	</select>
+</mapper>
+

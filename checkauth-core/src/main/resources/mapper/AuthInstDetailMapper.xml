@@ -127,24 +127,27 @@
         left join tbl_auth_inst t2 on t1.inst_code=t2.inst_code
         left join tbl_auth_statics t3 on t1.id=t3.inst_detail_id
         left join tbl_auth_inst_type t4 on t2.inst_type=t4.code_type
+        left join tbl_auth_inst_status t5 on t2.inst_status = t5.status_code
+        LEFT JOIN (SELECT t8.inst_name inst_name,GROUP_CONCAT(t8.field_name) field_name FROM (SELECT t6.inst_name inst_name,t6.field field, t7.field_name field_name FROM tbl_cnas_inst t6 LEFT JOIN tbl_cnas_field t7 ON t6.field = t7.field_code) t8 GROUP BY t8.inst_name
+) t9 ON t1.inst_name = t9.inst_name
         where 1=1
         <choose>
             <when test="instName!='' and instName != null">
-                and t1.inst_name like CONCAT('%',#{instName},'%')
+                and t1.inst_name like CONCAT('%',#{instName},'%') or t1.inst_short_name like CONCAT('%',#{instName},'%')
             </when>
             <when test="districtCodeName!='' and districtCodeName!=null">
                 and t2.district_code_name like CONCAT('%',#{districtCodeName},'%')
             </when>
-            <when test="instType!='' and instType!=null">
-                and t4.code_name like CONCAT('%',#{instType},'%')
+            <when test="rec!='' and rec!=null">
+                and t1.cnas_rec='认可' and t9.field_name like CONCAT('%',#{rec},'%')
             </when>
             <when test="busiScope!='' and busiScope!=null">
             	and t1.busi_scope like CONCAT('%',#{busiScope},'%')
             </when>
             <otherwise>
-                and (t1.inst_name like CONCAT('%',#{instName1},'%')
+                and (t1.inst_name like CONCAT('%',#{instName1},'%') or t1.inst_short_name like CONCAT('%',#{instName1},'%')
                 or t2.district_code_name like CONCAT('%',#{districtCodeName1},'%')
-                or t4.code_name like CONCAT('%',#{instType1},'%')
+                or (t1.cnas_rec='认可' and t9.field_name like CONCAT('%',#{rec1},'%'))
                 or t1.busi_scope like CONCAT('%',#{busiScope1},'%'))
             </otherwise>
         </choose>
@@ -161,24 +164,26 @@
         left join tbl_auth_statics t3 on t1.id=t3.inst_detail_id
         left join tbl_auth_inst_type t4 on t2.inst_type=t4.code_type
         left join tbl_auth_inst_status t5 on t2.inst_status = t5.status_code
+        LEFT JOIN (SELECT t8.inst_name inst_name,GROUP_CONCAT(t8.field_name) field_name FROM (SELECT t6.inst_name inst_name,t6.field field, t7.field_name field_name FROM tbl_cnas_inst t6 LEFT JOIN tbl_cnas_field t7 ON t6.field = t7.field_code) t8 GROUP BY t8.inst_name
+) t9 ON t1.inst_name = t9.inst_name
         where 1=1
         <choose>
             <when test="instName!='' and instName != null">
-                and t1.inst_name like CONCAT('%',#{instName},'%')
+                and t1.inst_name like CONCAT('%',#{instName},'%') or t1.inst_short_name like CONCAT('%',#{instName},'%')
             </when>
             <when test="districtCodeName!='' and districtCodeName!=null">
                 and t2.district_code_name like CONCAT('%',#{districtCodeName},'%')
             </when>
-            <when test="instType!='' and instType!=null">
-                and t4.code_name like CONCAT('%',#{instType},'%')
+            <when test="rec!='' and rec!=null">
+                and t1.cnas_rec='认可' and t9.field_name like CONCAT('%',#{rec},'%')
             </when>
             <when test="busiScope!='' and busiScope!=null">
             	and t1.busi_scope like CONCAT('%',#{busiScope},'%')
             </when>
             <otherwise>
-                 and (t1.inst_name like CONCAT('%',#{instName1},'%')
+                 and (t1.inst_name like CONCAT('%',#{instName1},'%') or t1.inst_short_name like CONCAT('%',#{instName1},'%')
                 or t2.district_code_name like CONCAT('%',#{districtCodeName1},'%')
-                or t4.code_name like CONCAT('%',#{instType1},'%')
+                or t1.cnas_rec='认可' and t9.field_name like CONCAT('%',#{rec1},'%')
                 or t1.busi_scope like CONCAT('%',#{busiScope1},'%'))
             </otherwise>
         </choose>
